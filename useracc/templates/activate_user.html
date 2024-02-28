@@ -1,0 +1,32 @@
+<!-- activate_user.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Activate User</h2>
+<form method="post">
+    {% csrf_token %}
+
+    <div>
+        <label for="{{ form.is_staff.id_for_label }}">Is Staff:</label>
+        {{ form.is_staff }}
+    </div>
+
+    <div>
+        <label for="{{ form.is_superuser.id_for_label }}">Is Superuser:</label>
+        {{ form.is_superuser }}
+    </div>
+
+    <div>
+        <label for="{{ form.email_verified.id_for_label }}">Email Verified:</label>
+        {{ form.email_verified }}
+    </div>
+
+    <div>
+        <label for="{{ form.is_active.id_for_label }}">Is Active:</label>
+        {{ form.is_active }}
+    </div>
+
+    <button type="submit">Activate</button>
+</form>
+<p><a href="{% url 'user_list' %}">Back to User List</a></p>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'staff:news' %}">Galleries</a></li>
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">List of News</h4>
+                    <div class="col-12 text-right">
+                        <button class="btn ml-2" style="background-color:#294e6f; color: #fff;">
+                            <a href="{% url 'staff:add_new' %}">Add News</a>
+                        </button>
+                    </div>
+                    <div class="float-right">
+                        <form method="GET" action="{% url 'staff:news' %}" class="form-inline">
+                        </form>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <table class="table table-striped table-bordered multi-ordering">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Posted By</th>
+                                    <th>title</th>
+                                    <th>posted date</th>
+                                    <th>image</th>
+                                    <th>description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for news in new %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ news.posted_by }}</td>
+                                    <td>{{ news.title }}</td>
+                                    <td>{{ news.post_date }}</td>
+                                    <td><a href="{{ news.image.url }}" download>Download images</a></td>
+                                    <td>{{ news.description|safe }}</td>
+                                    <td>
+                                        <span class="dropdown">
+                                            <a id="btnSearchDrop31" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="true" class="dropdown-toggle dropdown-menu-right">
+                                                Actions</a>
+                                            <span aria-labelledby="btnSearchDrop31"
+                                                class="dropdown-menu mt-1 dropdown-menu-right">
+                                                <a href="{% url 'staff:news_update' id=news.id %}"
+                                                    class="dropdown-item"><i class="fa fa-edit"></i>Edit
+                                                    news</a>
+                                                <a 
+                                                href="{% url 'staff:news_delete' id=news.id %}"
+                                                onclick="return confirm('are you sure do you want to delete this item')"
+                                                    class="dropdown-item"><i class="fa fa-trash danger"></i>Delete
+                                                    news</a>
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+{% endblock %}

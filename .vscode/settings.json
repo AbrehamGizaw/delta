@@ -1,0 +1,5 @@
+{
+  "prettier.enable": false,
+  "prettier.endOfLine": "auto",
+  "prettier.printWidth": 100
+}

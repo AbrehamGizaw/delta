@@ -1,0 +1,103 @@
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'staff:event' %}">Events</a></li>
+<li class="breadcrumb-item"><a href="#">Add Events</a></li>
+{% endblock %}
+
+{% block content %}
+<!--site-main start-->
+<div class="site-main">
+    <section class="ttm-row clearfix">
+        <div class="container">
+            <div class="row pt-60 res-991-pt-0">
+                <div class="col-lg-12">
+                    <div class="pr-40 res-991-pr-0 res-991-pb-30">
+                        <h4 class="h4-md " style="margin-bottom: 30px ; text-align: center;">{% if event.id %}
+                            Edit Event
+                            {% else %}
+                            Add Event
+                            {% endif %}</h4>
+
+                        <form
+                            action="{% if event %}{% url 'staff:events_update' id=event.id %}{% else %}{% url 'staff:add_event' %}{% endif %}"
+                            method="POST" enctype="multipart/form-data" class="row">
+
+                            {% csrf_token %}
+                            <!-- Add a hidden input field for update flag -->
+                            {% if update %}
+                            <input type="hidden" name="update" value="true">
+                            {% endif %}
+
+                            <div class="col-lg-6">
+                                <div class="contact-form col-md-12 pb-2 input-patient">
+                                    <p style="font-weight: 700;">categorys</p>
+                                    {{ form.category }}
+                                    {{ form.error.category }}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    {{ form.title.label_tag }}
+                                    {{ form.title }}
+                                    {{ form.title.errors }}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    {{ form.event_handler.label_tag }}
+                                    {{ form.event_handler }}
+                                    {{ form.event_handler.errors }}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    {{ form.place.label_tag }}
+                                    {{ form.place }}
+                                    {{ form.place.errors }}
+                                </div>
+                            </div>
+
+                            <div class="contact-form col-lg-6 pb-2 input-patient">
+                                <p>Start Date</p>
+                                <input type="date" name="{{ form.start_date.name }}"
+                                    id="{{ form.start_date.id_for_label }}" class="form-control"
+                                    value="{{ form.start_date.value }}">
+                                {{ form.error.start_date }}
+                            </div>
+
+                            <div class="contact-form col-lg-6 pb-2 input-patient">
+                                <p>End Date</p>
+                                <input type="date" name="{{ form.end_date.name }}" id="{{ form.end_date.id_for_label }}"
+                                    class="form-control" value="{{ form.end_date.value }}">
+                                {{ form.error.end_date }}
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="contact-form col-md-12 pb-2 input-patient">
+                                    <p style="font-weight: 700;">images</p>
+                                    {{ form.image }}
+                                    {{ form.error.image }}
+                                </div>
+                            </div>
+
+                            
+
+
+
+                            <div class="col-md-12 mb-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

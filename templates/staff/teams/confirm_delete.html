@@ -1,0 +1,36 @@
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'staff:applications' %}">Applications</a></li>
+<li class="breadcrumb-item"><a href="{% url 'staff:application_delete' pk=object.pk %}">Confirm Delete</a></li>
+{% endblock %}
+
+{% block content %}
+<!--site-main start-->
+<div class="site-main">
+    <section class="ttm-row clearfix">
+        <div class="container">
+            <div class="row pt-60 res-991-pt-0">
+                <div class="col-lg-12">
+                    <div class="pr-40 res-991-pr-0 res-991-pb-30">
+                        <!-- section-title -->
+                        <h4 class="h4-md">Confirm Deletion</h4>
+                        <!-- section-title end -->
+
+                        <form action="{% url 'staff:application_delete' pk=object.pk %}" method="POST">
+                            {% csrf_token %}
+                            <p>Are you sure you want to delete the application "{{ object.name }}"?</p>
+
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <a href="{% url 'staff:applications' %}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

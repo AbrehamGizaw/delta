@@ -1,0 +1,15 @@
+<!-- user_profile.html -->
+{% extends 'front/base.html' %}
+
+{% block content %}
+<h2>User Profile</h2>
+<p>Full Name: {{ user.full_name }}</p>
+<p>Email: {{ user.email }}</p>
+
+{% if user.status == 'email_verified' %}
+<p>Email is verified. Your account is active.</p>
+{% elif user.status == 'pending' %}
+<p>Email not yet verified. Check your email for the verification link.</p>
+
+{% endif %}
+{% endblock %}

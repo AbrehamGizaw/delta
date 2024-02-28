@@ -1,0 +1,166 @@
+{% extends 'front/base.html' %}
+
+{% load static %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block news-main %} active {% endblock %}
+{% block gallery %} active {% endblock %}
+
+{% block page-name %}<span> Gallery </span> {% endblock %}
+
+{% block content %}
+
+
+
+<section class=" element-style ">
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 pt-25 mt-25">
+                <!-- section-title -->
+                <div class="section-title with-desc clearfix">
+                    <div class="title-header text-center">
+                        <h5>OUR GALLERIES</h5>
+                    </div>
+                </div><!-- section-title end -->
+            </div>
+        </div><!-- row end -->
+
+
+        <div class="ttm-tabs">
+            <ul class="tabs text-center">
+                <li class="tab active"><a href="#"> All </a></li>
+                {% for cat in category %}
+                <li class="tab"><a href="#">{{cat.name}}</a></li>
+                {% endfor %}
+            </ul><!-- flat-tab end -->
+
+            <div class="content-tab pt-20">
+                
+                
+                <div class="content-inner active">
+                    
+                    <div class="row multi-columns-row ttm-boxes-row-wrapper ">
+
+                        {% for gallery in gallery_list %}
+
+                        <div class="ttm-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+                            <!-- featured-imagebox -->
+                            <div class="featured-imagebox featured-imagebox-portfolio">
+                                <!-- featured-thumbnail -->
+                                <div class="featured-thumbnail">
+                                    <a href="#"> <img class="img-fluid"
+                                            src="{{gallery.image.url}}" alt="image" style="height: 270px;"></a>
+                                </div><!-- featured-thumbnail end-->
+                                <!-- ttm-box-view-overlay -->
+                                <div class="ttm-box-view-overlay ttm-portfolio-box-view-overlay">
+                                    <div class="featured-iconbox ttm-media-link">
+                                        <a class="ttm_prettyphoto ttm_image" title="{{gallery.title}}"
+                                            data-rel="prettyPhoto" href="{{gallery.image.url}}">
+                                            <i class="ti ti-plus"></i>
+                                        </a>
+                                    </div>
+                                    <div class="ttm-box-view-content-inner">
+                                        <div class="featured-content featured-content-portfolio">
+                                            <div class="featured-title">
+                                                <h5><a href="">{{gallery.title}}</a>
+                                                </h5>
+                                            </div>
+                                            <span class="category">
+                                                <a href="">{{gallery.category}}</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div><!-- ttm-box-view-overlay end-->
+                            </div><!-- featured-imagebox -->
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+               
+                
+
+                {% for cat in category %}
+                
+                <div class="content-inner ">
+                    
+                    <div class="row multi-columns-row ttm-boxes-row-wrapper ">
+
+                        {% for gallery in gallery_list %}
+                        {% if gallery.category == cat %}
+                        <div class="ttm-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+                            <!-- featured-imagebox -->
+                            <div class="featured-imagebox featured-imagebox-portfolio">
+                                <!-- featured-thumbnail -->
+                                <div class="featured-thumbnail">
+                                    <a href="#"> <img class="img-fluid"
+                                            src="{{gallery.image.url}}" alt="image" style="height: 270px;"></a>
+                                </div><!-- featured-thumbnail end-->
+                                <!-- ttm-box-view-overlay -->
+                                <div class="ttm-box-view-overlay ttm-portfolio-box-view-overlay">
+                                    <div class="featured-iconbox ttm-media-link">
+                                        <a class="ttm_prettyphoto ttm_image" title="{{gallery.title}}"
+                                            data-rel="prettyPhoto" href="{{gallery.image.url}}">
+                                            <i class="ti ti-plus"></i>
+                                        </a>
+                                    </div>
+                                    <div class="ttm-box-view-content-inner">
+                                        <div class="featured-content featured-content-portfoli4o">
+                                            <div class="featured-title">
+                                                <h5><a href="">{{gallery.title}}</a>
+                                                </h5>
+                                            </div>
+                                            <span class="category">
+                                                <a href="">{{gallery.category}}</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div><!-- ttm-box-view-overlay end-->
+                            </div><!-- featured-imagebox -->
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {%  endfor %}
+
+
+
+               
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <div class="col-lg-12 ">
+        <div class="ttm-pagination">
+            <a class="next page-numbers" href="#"><i class="ti ti-arrow-left"></i></a>
+            <span class="page-numbers current">1</span>
+            <a class="page-numbers" href="#">2</a>
+            <a class="next page-numbers" href="#"><i class="ti ti-arrow-right"></i></a>
+        </div>
+    </div>
+
+    </div>
+</section>
+
+
+</div><!--site-main end-->
+
+
+{% endblock %}

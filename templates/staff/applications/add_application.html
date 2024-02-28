@@ -1,0 +1,127 @@
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'staff:applications' %}">Applications</a></li>
+<li class="breadcrumb-item"><a href="#">Add Application</a></li>
+{% endblock %}
+
+{% block content %}
+<!--site-main start-->
+<div class="site-main">
+    <section class="ttm-row clearfix">
+        <div class="container">
+            <div class="row pt-60 res-991-pt-0">
+                <div class="col-lg-12">
+                    <div class="pr-40 res-991-pr-0 res-991-pb-30">
+                        <!-- section-title -->
+                        <h4 class="h4-md">Add Application</h4>
+                        <!-- section-title end -->
+
+                        <form
+                            action="{% if application %}{% url 'staff:application_update' id=application.id %}{% else %}{% url 'staff:add_application' %}{% endif %}"
+                            method="POST" enctype="multipart/form-data" class="row">
+
+                            {% csrf_token %}
+                            <!-- Add a hidden input field for the update flag -->
+                            {% if update %}
+                            <input type="hidden" name="update" value="true">
+                            {% endif %}
+
+                            <div class="col-md-6">
+
+                                <div class="contact-form col-md-12 pb-2 input-patient">
+                                    <p style="font-weight: 700;">Title</p>
+                                    {{ form.title }}
+                                    {{ form.error.title }}
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="contact-form col-md-12 pb-2 input-patient">
+                                    <p style="font-weight: 700;">Name</p>
+                                    {{ form.name }}
+                                    {{ form.error.name }}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="contact-form col-md-12 pb-2 input-patient">
+                                    <p style="font-weight: 700;">Email</p>
+                                    {{ form.email }}
+                                    {{ form.error.email }}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="contact-form col-md-12 pb-2 input-patient">
+                                    <p style="font-weight: 700;">Phone</p>
+                                    {{ form.phone }}
+                                    {{ form.error.phone }}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="contact-form col-md-12 pb-2 input-patient">
+                                    <p style="font-weight: 700;">Image</p>
+                                    {{ form.image }}
+                                    {{ form.error.image }}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="contact-form col-md-12 pb-2 input-patient">
+                                    <p style="font-weight: 700;">Original document</p>
+                                    {{ form.original_document }}
+                                    {{ form.error.original_document }}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="contact-form col-md-12 pb-2 input-patient">
+                                    <p style="font-weight: 700;">Cv document</p>
+                                    {{ form.cv_document }}
+                                    {{ form.error.cv_document }}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="contact-form col-md-12 pb-2 input-patient">
+                                    <p style="font-weight: 700;">Supplementary document</p>
+                                    {{ form.supplementary_document }}
+                                    {{ form.error.supplementary_document }}
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="contact-form col-md-12 pb-2 input-patient">
+                                    <p>Letter</p>
+                                    {{ form.letter }}
+                                    {{ form.error.letter }}
+                                </div>
+
+                            </div>
+                    </div>
+
+                    <!-- Form Submit Button -->
+                    <div class="col-md-12 mb-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    </form>
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <strong>Error!</strong> Please correct the following issues:
+                        <ul>
+                            {% for field, error_list in form.errors.items %}
+                            {% for error in error_list %}
+                            <li>{{ field }}: {{ error }}</li>
+                            {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+</div>
+</section>
+</div>
+{% endblock %}

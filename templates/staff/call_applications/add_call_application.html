@@ -1,0 +1,116 @@
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'staff:call_applications' %}">Call Applications</a></li>
+<li class="breadcrumb-item"><a href="#">
+        {% if call_application.id %}
+        Edit Call Application
+        {% else %}
+        Add Call Application
+        {% endif %}
+    </a></li>
+{% endblock %}
+
+{% block content %}
+<!--site-main start-->
+<div class="site-main">
+    <section class="ttm-row clearfix">
+        <div class="container">
+            <div class="row pt-60 res-991-pt-0">
+                <div class="col-lg-12">
+                    <div class="pr-40 res-991-pr-0 res-991-pb-30">
+                        <!-- section-title -->
+                
+                        <h4 class="h4-md " style="margin-bottom: 30px ; text-align: center;">{% if call_application.id %}
+                            Edit Call Application
+                            {% else %}
+                            Add Call Application
+                            {% endif %}</h4>
+
+                        <form
+                            action="{% if call_application.id %}{% url 'staff:call_application_update' id=call_application.id %}{% else %}{% url 'staff:add_call_application' %}{% endif %}"
+                            method="POST" enctype="multipart/form-data" class="row">
+
+                            {% csrf_token %}
+
+                            <!-- Title -->
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    {{ form.title.label_tag }}
+                                    {{ form.title }}
+                                    {{ form.title.errors }}
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    {{ form.phone.label_tag }}
+                                    {{ form.phone }}
+                                    {{ form.phone.errors }}
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    {{ form.email.label_tag }}
+                                    {{ form.email }}
+                                    {{ form.email.errors }}
+                                </div>
+                            </div>
+
+                            <!-- Created Date -->
+                            <div class="contact-form col-lg-6 pb-2 input-patient">
+                                <p>Start Date</p>
+                                <input type="date" name="{{ form.start_date.name }}"
+                                    id="{{ form.start_date.id_for_label }}" class="form-control"
+                                    value="{{ form.start_date.value }}">
+                                {{ form.error.start_date }}
+                            </div>
+
+                            <!-- End Date -->
+                            <div class="contact-form col-lg-6 pb-2 input-patient">
+                                <p>End Date</p>
+                                <input type="date" name="{{ form.end_date.name }}" id="{{ form.end_date.id_for_label }}"
+                                    class="form-control" value="{{ form.end_date.value }}">
+                                {{ form.error.end_date }}
+                            </div>
+
+                            <!-- Assistant Name -->
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    {{ form.assistant_name.label_tag }}
+                                    {{ form.assistant_name }}
+                                    {{ form.assistant_name.errors }}
+                                </div>
+                            </div>
+
+
+                            <!-- Document -->
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    {{ form.document.label_tag }}
+                                    {{ form.document }}
+                                    {% if call_application.document %}
+                                    <small>Current Document: <a href="{{ call_application.document.url }}"
+                                            target="_blank">{{ call_application.document.name }}</a></small>
+                                    {% endif %}
+                                    {{ form.document.errors }}
+                                </div>
+                            </div>
+
+                            <!-- Form Submit Button -->
+                            <div class="col-md-12 mb-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

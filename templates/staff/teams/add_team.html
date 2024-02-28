@@ -1,0 +1,54 @@
+{% extends 'staff/base.html' %}
+
+{% block content %}
+<h2>Add Team Member</h2>
+<form method="post" class="form" action="{% url 'staff:add_team' %} "enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="row">
+        <div class="col-lg-6 form-group">
+            <label for="{{ form.name.id_for_label }}">Name:</label>
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+
+        <div class="col-lg-6 form-group">
+            <label for="{{ form.email.id_for_label }}">Email:</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 form-group">
+            <label for="{{ form.phone.id_for_label }}">Phone:</label>
+            {{ form.phone }}
+            {{ form.phone.errors }}
+        </div>
+
+        <div class="col-lg-6 form-group">
+            <label for="{{ form.wing.id_for_label }}">Wing:</label>
+            {{ form.wing }}
+            {{ form.wing.errors }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 form-group">
+            <label for="{{ form.phone.id_for_label }}">Role:</label>
+            {{ form.role }}
+            {{ form.role.errors }}
+        </div>
+
+        <div class="col-lg-6 form-group">
+            <label for="{{ form.wing.id_for_label }}">Image:</label>
+            {{ form.image }}
+            {{ form.image.errors }}
+        </div>
+    </div>
+    <div class="col-md-12 mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+{% endblock %}

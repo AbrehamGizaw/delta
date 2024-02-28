@@ -1,0 +1,177 @@
+
+{% extends 'front/base.html' %}
+{% load static %}
+
+
+{% block signin %} active {% endblock %}
+{% block register %} active {% endblock %}
+
+{% block page-name %}<span> Signin </span> {% endblock %}
+
+
+{% block content %}
+
+
+    <!--site-main start-->
+    <div class="site-main">
+
+        <!-- checkout-section -->
+        <section class="ttm-row checkout-section break-991-colum clearfix">
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 ">
+                        <!-- section-title -->
+                        <div class="section-title with-desc clearfix">
+                            <div class="title-header text-center">
+                                <h5 >Register to Delta</h5>
+                            </div>
+                        </div><!-- section-title end -->
+                    </div>
+                </div><!-- row end -->
+                <!-- row -->
+                <div class="row">
+                    <div class="col-lg-12" style="background-color: #FFF; box-shadow: 2px 2px 2px 2px #dcdbdb;">
+                        <form name="checkout" method="post" class="checkout row" action="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-lg-6">
+                                <div class="billing-fields">
+                                    <p class="form-row">
+                                        <label>1. Email &nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        {{form.email}}
+                                        {{form.error.email}}
+                                        <!-- <input type="text" class="input-text" name="billing_first_name" placeholder="" value=""> -->
+                                    </p>
+                                    <p class="form-row">
+                                        <label>3. Phone Number </label>
+                                        {{form.phone}}
+                                        {{form.error.phone}}
+                                        <!-- <input type="text" class="input-text " name="billing_last_name" placeholder="" value=""> -->
+                                    </p>
+                                    <p class="form-row">
+                                        <label>5. Password &nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        {{form.password}}
+                                        {{form.error.password}}
+                                        <!-- <input type="text" class="input-text " name="billing_company" placeholder="" value=""> -->
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                <div class="billing-fields">
+                                    
+                                    <p class="form-row">
+                                        <label>2. Full Name &nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        {{form.full_name}}
+                                        {{form.error.full_name}}
+                                        <!-- <input type="text" class="input-text" name="billing_address_1" placeholder="House number and street name" value=""> -->
+                                    </p>
+                                    <p class="form-row">
+                                        <label> 4. Select Profile </label>
+                                        {{form.profile}}
+                                        {{form.error.profile}}
+                                        <!-- <select name="billing_country" class="country_to_state country_select" tabindex="-1" aria-hidden="true">
+                                            <option value="">Male</option>
+                                            <option value="AX">Female</option>
+                                        </select> -->
+                                    </p>
+                                    <p class="form-row">
+                                        <label>6. Confirm Password &nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        {{form.password2}}
+                                        {{form.error.password2}}
+                                        <!-- <input type="text" class="input-text " name="billing_address_2" placeholder="Apartment, suite, unit etc. (optional)" value=""> -->
+                                    </p>
+                                </div>
+                                
+
+
+                            </div>
+                            <div class="col-lg-6">
+                                
+                                
+                                <div class="form-row place-order">
+                                    <button type="submit" class="button folat-end" name="checkout_place_order"   data-value="Place order">Register</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- checkout-section end -->
+
+
+    </div><!--site-main end-->
+
+
+{% endblock %}
+
+
+
+			<!-- POST NEWS-1
+			============================================= -->
+			<section  class="wide-60 contacts-section division">				
+				<div class="container">
+						
+					<div class="row">	
+
+						<!-- News FORM -->	
+				 		<div class="col-md-12 col-lg-12">
+				 			<div class="form-holder mb-40">
+				 				<form action="" method="POST" class="row " enctype="multipart/form-data">
+                                    {% csrf_token %}
+					                <!-- News Form Input -->
+					                <div  class="contact-form col-md-6">
+                                        <p style="font-weight: 700;">1. Enter your email*</p>
+                                        {{form.email}}
+					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
+					                </div>
+					                <div  class="contact-form col-md-6">
+                                        <p style="font-weight: 700;">2. Enter your full name </p>
+                                        {{form.full_name}}
+					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
+					                </div>
+
+					                <!-- Form Select -->
+					                <div  class="contact-form col-md-12 col-lg-6 ">
+                                        <p style="font-weight: 700;">3. Enter your phone number</p>
+                                        {{form.phone}}
+					                </div>
+
+					                <div  class="contact-form col-md-12 col-lg-6">
+                                        <p style="font-weight: 700;">4. Choose profile picture</p>
+                                        {{form.profile}}
+					                	<!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+					                </div>						                          
+					                      
+					                <div  class="contact-form col-md-6">
+                                        <p style="font-weight: 700;">5. Write a password*</p>
+                                        {{form.password}}
+					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
+					                </div>
+					                <div  class="contact-form col-md-6">
+                                        <p style="font-weight: 700;">6. Confirm your password</p>
+                                        {{form.password2}}
+					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
+					                </div>
+					                                            
+					                <!-- News Form Button -->
+					                <div class="col-lg-12 mt-15 form-btn text-center">  
+					                	<button type="submit" class="btn btn-blue blue-hover submit" onclick="return confirm('confirm?')" >Register </button> 
+                                        
+					                </div>
+					                               
+				                                              
+				                </form> 
+
+				 			</div>	
+				 		</div> 	<!-- END News FORM -->	
+
+
+				 	</div>	<!-- End row -->			  
+ 
+
+				</div>	   <!-- End container -->		
+			</section>	<!-- END POST NEWS-1 -->

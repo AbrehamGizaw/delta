@@ -1,0 +1,137 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %} Register to EKCC {% endblock %} 
+
+{% block register %} active-menu {% endblock %}
+
+{% block link_name %} Register {% endblock %}
+
+{% block page_name %} Register {% endblock %}
+
+
+{% block content %}
+
+
+			<!-- POST NEWS-1
+			============================================= -->
+			<section  class="wide-60 contacts-section division">				
+				<div class="container">
+						
+					<div class="row">	
+
+						<!-- News FORM -->	
+				 		<div class="col-md-12 col-lg-12">
+				 			<div class="form-holder mb-40">
+				 				<form action="" method="POST" class="row " enctype="multipart/form-data">
+                                    {% csrf_token %}
+					                <!-- News Form Input -->
+					                <div  class="contact-form col-md-6">
+                                        <p style="font-weight: 700;">1. Enter your email*</p>
+                                        {{form.email}}
+					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
+					                </div>
+					                <div  class="contact-form col-md-6">
+                                        <p style="font-weight: 700;">2. Enter your full name </p>
+                                        {{form.full_name}}
+					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
+					                </div>
+
+					                <!-- Form Select -->
+					                <div  class="contact-form col-md-12 col-lg-6 ">
+                                        <p style="font-weight: 700;">3. Enter your phone number</p>
+                                        {{form.phone}}
+					                </div>
+
+					                <div  class="contact-form col-md-12 col-lg-6">
+                                        <p style="font-weight: 700;">4. Choose profile picture</p>
+                                        {{form.profile}}
+					                	<!-- <input type="tel" name="phone" class="form-control phone" placeholder="Enter Your Phone Number*" required>  -->
+					                </div>						                          
+					                      
+					                <div  class="contact-form col-md-6">
+                                        <p style="font-weight: 700;">5. Write a password*</p>
+                                        {{form.password}}
+					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
+					                </div>
+					                <div  class="contact-form col-md-6">
+                                        <p style="font-weight: 700;">6. Confirm your password</p>
+                                        {{form.password2}}
+					                	<!-- <input type="text" name="name" class="form-control name" placeholder="Enter Your Name*" required>  -->
+					                </div>
+					                                            
+					                <!-- News Form Button -->
+					                <div class="col-lg-12 mt-15 form-btn text-center">  
+					                	<button type="submit" class="btn btn-blue blue-hover submit" onclick="return confirm('confirm?')" >Register </button> 
+                                        
+					                </div>
+					                               
+				                                              
+				                </form> 
+
+				 			</div>	
+				 		</div> 	<!-- END News FORM -->	
+
+
+				 	</div>	<!-- End row -->			  
+ 
+
+				</div>	   <!-- End container -->		
+			</section>	<!-- END POST NEWS-1 -->
+
+{% endblock %}
+
+
+
+            
+<div style="padding: 20px;">
+
+    {% if submitted %}
+    
+    <h4> successfully submitted </h4>
+    {% endif %}
+
+    <form action="" method="POST" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            {{form.email}}
+            <!-- <input type="text" class="form-control" placeholder="email" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+        <div class="input-group mb-3">
+            {{form.full_name}}
+            <!-- <input type="text" class="form-control" placeholder="name" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+        <div class="input-group mb-3">
+            {{form.phone}}
+            <!-- <input type="text" class="form-control" placeholder="phone" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+        <div class="input-group mb-3">
+            {{form.password}}
+            <!-- <input type="text" class="form-control" placeholder="password" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+        <div class="input-group mb-3">
+            {{form.password2}}
+            <!-- <input type="text" class="form-control" placeholder="password" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+
+
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                {{form.profile}}
+            <!-- <input type="file" class="custom-file-input" id="inputGroupFile02"> -->
+            </div>
+        </div>
+        <br><br>
+
+
+        <button type="submit"  class="btn btn-dark" onclick="return confirm('confirm?')" >Register</button>
+    </form>
+
+</div>

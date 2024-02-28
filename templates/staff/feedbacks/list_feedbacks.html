@@ -1,0 +1,101 @@
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'staff:feedbacks' %}">Feedbacks</a></li>
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">List of Feedbacks</h4>
+                    <div class="float-right">
+                        <form method="GET" action="{% url 'staff:feedbacks' %}" class="form-inline">
+                        </form>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <table class="table table-striped table-bordered multi-ordering">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>interest</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for feedback in feedback %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ feedback.name }}</td>
+                                    <td>{{ feedback.phone }}</td>
+                                    <td>{{ feedback.email }}</td>
+                                    <td><a href="{% url 'staff:feedback_detail' id=feedback.id %}">
+                                            {{feedback.interest}}</a>
+                                        </td>
+                                    <td>
+                                        <span class="dropdown">
+                                            <a id="btnSearchDrop31" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="true" class="dropdown-toggle dropdown-menu-right">
+                                                Actions</a>
+                                            <span aria-labelledby="btnSearchDrop31"
+                                                class="dropdown-menu mt-1 dropdown-menu-right">
+                                                <a onclick="return confirm('are you sure do you want to delete this item')"
+                                                href="{% url 'staff:feedback_delete' id=feedback.id %}"
+                                                    class="dropdown-item"><i class="fa fa-trash danger"></i>Delete
+                                                    feedback</a>
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <div class="float-right">
+                            {% if feedback.has_other_pages %}
+                            <ul class="pagination">
+                                {% if feedback.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1">First</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ feedback.previous_page_number }}">Previous</a>
+                                </li>
+                                {% endif %}
+                                {% for page_num in feedback.paginator.page_range %}
+                                {% if feedback.number == page_num %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ page_num }}</span>
+                                </li>
+                                {% else %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+                                {% if feedback.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ feedback.next_page_number }}">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ feedback.paginator.num_pages }}">Last</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'front/base.html' %} {% load static %} {% block css %}
+<style>
+  .call-item {
+    border: 1px solid #234b72;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+
+  .call-item:hover {
+    background-color: #daf4eb;
+  }
+
+  .call-item h5 {
+    color: #234b72;
+  }
+
+  .call-item p {
+    margin-bottom: 10px;
+  }
+
+  .btn-group {
+    margin-top: 10px;
+  }
+
+  .btn-primary,
+  .btn-success {
+    margin-right: 10px;
+    background-color: #01d6a3;
+  }
+</style>
+{% endblock %} {% block pub %} active {% endblock %} {% block call %} active {%
+endblock %} {% block page-name %}<span>Call Of Application </span> {% endblock
+%} {% block content %}
+<!-- Page Content -->
+<div class="container">
+  <!-- row -->
+  <div class="row">
+    <div class="col-lg-12 col-md-12 pt-25 mt-25">
+      <!-- section-title -->
+      <div class="section-title with-desc clearfix">
+        <div class="title-header text-center">
+          <h5>Call of Applications</h5>
+        </div>
+      </div>
+      <!-- section-title end -->
+    </div>
+  </div>
+  <!-- row end -->
+
+  {% for calls in call_of_application %}
+  <!-- Call for Applications List -->
+  <div class="call-item">
+    <!-- 'title', 'contact_person_phone', 'contact_person_email','Application_start_date', 'Application_end_date' -->
+    <h5>{{calls.title}}</h5>
+    <p>
+      <strong>Contact:</strong> {{calls.assistant_name}}(<a
+        href="mailto:{{calls.contact_person_email}}"
+        >{{calls.email}}</a
+      >)
+    </p>
+    <p><strong>Phone:</strong> {{calls.phone}}</p>
+    <p>
+      <strong>Application start Date:</strong> {{calls.start_date}}<strong
+        >End Date:</strong
+      >
+      {{calls.end_date}}
+    </p>
+    <div class="btn-group">
+      <a href="#" class="btn btn-primary">Download </a>
+      <a href="{% url 'application_create' %}" class="btn btn-success"
+        >Apply Now</a
+      >
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="pagination">
+    <span class="step-links">
+      {% if call_of_application.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ call_of_application.previous_page_number }}"
+        >previous</a
+      >
+      {% endif %}
+
+      <span class="current-page">
+        Page {{ call_of_application.number }} of {{
+        call_of_application.paginator.num_pages }}.
+      </span>
+
+      {% if call_of_application.has_next %}
+      <a href="?page={{ call_of_application.next_page_number }}">next</a>
+      <a href="?page={{ call_of_application.paginator.num_pages }}"
+        >last &raquo;</a
+      >
+      {% endif %}
+    </span>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends 'front/base.html' %} {% load static %} {% block css %} {% endblock %}
+{% block news-main %} active {% endblock %} {% block news %} active {% endblock %} 
+{% block page-name %} {% if search or filter %}
+<span
+  ><a href="{% url 'news' %}" class="home"
+    ><i class="fa fa-newspaper-o"></i>&nbsp;&nbsp; All News</a
+  >
+</span>
+<span class="ttm-bread-sep">&nbsp; | &nbsp;</span>
+<span>News {% if search %} Search {% else %} Filter {% endif %}</span>
+
+{% else %}
+<span>News </span>
+{% endif %} {% endblock %} {% block content %}
+
+<!--site-main start-->
+<div class="site-main single">
+  <!-- sidebar -->
+  <div
+    class="sidebar ttm-sidebar-right ttm-bgcolor-white break-991-colum clearfix"
+  >
+    <div class="container">
+      <!-- row -->
+      <div class="row">
+        <div class="col-lg-12 col-md-12 pt-25 mt-25">
+          <!-- section-title -->
+          <div class="section-title with-desc clearfix">
+            <div class="title-header text-center">
+              <h5>
+                {% if search %} News Search Result for "{{term}}" {% elif filter
+                %} News Filter Result for "{{selected_cat}}" Category {% else %}
+                OUR ARTICLES AND NEWS {% endif %}
+              </h5>
+            </div>
+          </div>
+          <!-- section-title end -->
+        </div>
+      </div>
+      <!-- row end -->
+
+      <!-- row -->
+      <div class="row">
+        <div class="col-lg-9">
+          {% if news %} {% for news in news %}
+          <div class="ttm-box-col-wrapper col-lg-12 col-md-12 col-sm-12">
+            <!-- featured-imagebox-post -->
+            <div
+              class="featured-imagebox featured-imagebox-post ttm-box-view-left-image box-shadow row mb-3"
+            >
+              <div class="col-lg-4 col-md-12 ttm-featured-img-left">
+                <div class="ttm-post-featured-outer">
+                  <div class="ttm-post-thumbnail featured-thumbnail">
+                    <img
+                      class="img-fluid"
+                      src="{{news.image.url}}"
+                      alt=""
+                      style="height: 200px"
+                    />
+                  </div>
+                  <div class="ttm-box-post-date">
+                    <span class="ttm-entry-date">
+                      <time class="entry-date" datetime="{{news.post_date}}"
+                        >{{news.post_date.day}} <br /><span class="entry-month"
+                          >Jan<span class="entry-year"
+                            >{{news.post_date.year}}</span
+                          ></span
+                        ></time
+                      >
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-lg-8 col-md-12 featured-content featured-content-post"
+              >
+                <div class="post-title featured-title">
+                  <h5>
+                    <a href="{% url 'news_detail' pk=news.id %}"
+                      >{{news.title}}</a
+                    >
+                  </h5>
+                </div>
+                <div class="post-meta">
+                  <span class="ttm-meta-line comments-link"
+                    ><i class="fa fa-calendar"></i> on: {{news.post_date}}</span
+                  >
+                  <span class="ttm-meta-line byline"
+                    ><i class="fa fa-user"></i> by: {{news.post_by}}
+                  </span>
+                  <span class="ttm-meta-line byline"
+                    ><i class="fa fa-tag"></i> tag: {{news.category}}
+                  </span>
+                </div>
+                <div class="post-desc featured-desc">
+                  <p>{{news.description|truncatechars:200}}</p>
+                </div>
+                <h5 class="post-meta">
+                  <a href="{% url 'news_detail' pk=news.id %}">
+                    <span class="ttm-meta-line comments-link"
+                      >Read More <i class="fa fa-arrow-right"></i
+                    ></span>
+                  </a>
+                </h5>
+              </div>
+            </div>
+            <!-- featured-imagebox-post end -->
+          </div>
+          {% endfor %} {% else %}
+
+          <div class="ttm-box-col-wrapper col-lg-12 col-md-12 col-sm-12">
+            <!-- featured-imagebox-post -->
+            <div
+              class="featured-imagebox featured-imagebox-post ttm-box-view-left-image box-shadow row mb-3"
+            >
+              <div
+                class="col-lg-12 col-md-12 featured-content featured-content-post"
+              >
+                <div class="post-title featured-title text-center">
+                  <h5>No News Found!</h5>
+                </div>
+              </div>
+            </div>
+            <!-- featured-imagebox-post end -->
+          </div>
+
+          {% endif %}
+        </div>
+        <div
+          class="col-lg-3 widget-area sidebar-right ttm-col-bgcolor-yes ttm-bg ttm-right-span ttm-bgcolor-grey"
+        >
+          <!-- <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div> -->
+          <aside class="widget widget-search">
+            <form
+              action="{% url 'news_search' %}"
+              method="get"
+              class="search-form box-shadow"
+            >
+              <label>
+                <span class="screen-reader-text">Search for:</span>
+                <input
+                  type="search"
+                  class="input-text"
+                  placeholder="Search ..."
+                  id="search"
+                  value=""
+                  name="searched_item"
+                />
+              </label>
+              <input type="submit" class="search-submit" value="" />
+            </form>
+          </aside>
+          <aside class="widget widget-categories">
+            <h3 class="widget-title">Categories</h3>
+            <ul>
+              {% for cat in category %}
+              <li>
+                <a href="{% url 'news_by_cat' pk=cat.id %}">{{cat.name}}</a
+                ><span>{{cat.news_set.all.count}}</span>
+              </li>
+              {% endfor %}
+            </ul>
+          </aside>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="ttm-pagination">
+            <a class="next page-numbers" href="#"
+              ><i class="ti ti-arrow-left"></i
+            ></a>
+            <span class="page-numbers current">1</span>
+            <a class="page-numbers" href="#">2</a>
+            <a class="next page-numbers" href="#"
+              ><i class="ti ti-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- row end -->
+    </div>
+  </div>
+  <!-- sidebar end -->
+</div>
+<!--site-main end-->
+
+{% endblock %}

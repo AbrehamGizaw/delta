@@ -1,0 +1,117 @@
+
+
+{% extends 'front/base.html' %}
+
+{% load static %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block pub %} active {% endblock %}
+{% block research %}active{% endblock %}
+{% block page-name %}<span> Research outputs </span> {% endblock %}
+
+
+{% block content %}
+
+ 
+    <!--site-main start-->
+    <div class="site-main">
+
+        <div class="sidebar ttm-sidebar-right ttm-bgcolor-white break-991-colum clearfix">
+            <div class="container">
+
+                
+                <!-- row -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 pt-25 mt-25">
+                        <!-- section-title -->
+                        <div class="section-title with-desc clearfix">
+                            <div class="title-header text-center">
+                                <h5 > Research Outputs</h5>
+                            </div>
+                        </div><!-- section-title end -->
+                    </div>
+                </div><!-- row end -->
+
+                <!-- row -->
+                <div class="row" style="margin-top: -50px!important;">
+                    <div class="col-lg-12 content-area pt-0 pb-0">
+                        <!-- post -->
+                        <article class="post ttm-blog-classic clearfix mb-0">
+                            
+                            <div class="ttm-blog-classic-content">
+                                <div class="post-meta">
+                            
+                                    <div class="ttm-blog-classic-box-comment">
+                                        <div id="comments" class="comments-area">
+                                            <ol class="comment-list">
+                                                    {% for research in research %}
+                                                    <div class="comment-body">
+                                                    {% if research.image %}
+                                                        <div class="comment-author vcard">
+                                                            <img src="{{research.image.url}}" class="avatar" alt="comment-img">
+                                                        </div>
+                                                    {% else %}
+                                                    <div class="comment-author vcard">
+                                                        <div class="icon-box">
+                                                            <div class="ttm-icon ttm-icon_element-fill ttm-icon_element-background-grey ttm-icon_element-color-green ttm-icon_element-size-md ttm-icon_element-style-square">
+                                                                <i class="">{{forloop.counter}}</i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endif %}
+                                                        <div class="comment-box">
+                                                            <div class="comment-meta commentmetadata">
+                                                                <cite class="ttm-comment-owner">{{research.title}}</cite>
+                                                                
+                                                            </div>
+                                                            <div class="author-content-wrap">
+                                                                <span class="pt-2"><strong> <i class="fa fa-user"> By:</i></strong>{{research.author}}</span>
+                                                            </div>
+                                                            <div class="author-content-wrap">
+                                                                <span class="pt-2"><strong> <i class="fa fa-calendar"> On:</i></strong> {{resaerch.post_date}}</span>
+                                                            </div>
+                                                            <div class="author-content-wrap">
+                                                                <p> <span class="pt-2"><strong> Absreact:</strong> {{research.abstract}}</p>
+                                                            </div>
+                                                            <div class="reply">
+                                                                {% if research.document %}
+                                                                <a href="{{research.document.url}}" class="ttm-btn ttm-btn-size-xs ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor" href="#">Download <span class="pr-2"><i class="fa fa-download"></i> </span> </a>
+                                                                <a href="{{reseach.document}}" class="ttm-btn ttm-btn-size-xs ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-black">Read <span class="pr-2"><i class="fa fa-eye"></i> </span> </a>
+                                                                {% else %}
+                                                                <a href="" class="ttm-btn ttm-btn-size-xs ttm-btn-shape-square ttm-btn-style-border" href="#"> <span class="pr-2"> No Document Available </span> </a>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </ol>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div><!-- ttm-blog-classic-content end -->
+                        </article><!-- post end -->
+                    </div>
+                    
+
+                    <div class="col-lg-12 ">
+                        <div class="ttm-pagination">
+                            <a class="next page-numbers" href="#"><i class="ti ti-arrow-left"></i></a>
+                            <span class="page-numbers current">1</span>
+                            <a class="page-numbers" href="#">2</a>
+                            <a class="next page-numbers" href="#"><i class="ti ti-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                </div><!-- row end -->
+            </div>
+        </div>
+
+    </div><!--site-main end-->
+
+
+{% endblock %}

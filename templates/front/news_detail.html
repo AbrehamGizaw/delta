@@ -1,0 +1,150 @@
+
+{% extends 'front/base.html' %}
+{% load static %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block news-main %} active {% endblock %}
+{% block news %} active {% endblock %}
+
+{% block page-name %} 
+<span>
+    <a title="" href="{% url 'news' %}" class="home"><i class="fa fa-newspaper-o"></i>&nbsp;&nbsp;News</a>
+</span>
+<span class="ttm-bread-sep">&nbsp; | &nbsp;</span>
+<span>News Detail</span> 
+{% endblock %}
+
+{% block content %}
+
+<!--site-main start-->
+<div class="site-main single">
+
+    <!-- sidebar -->
+    <div class="sidebar ttm-sidebar-right ttm-bgcolor-white break-991-colum clearfix">
+        <div class="container">
+
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 pt-25 mt-25">
+                    <!-- section-title -->
+                    <div class="section-title with-desc clearfix">
+                        <div class="title-header text-center">
+                            <h5> News Detail</h5>
+                        </div>
+                    </div><!-- section-title end -->
+                </div>
+            </div><!-- row end -->
+
+            <!-- row -->
+            <div class="row ">
+                <div class="col-lg-9 ">
+                    
+
+                        <!-- post -->
+                        <article class="post ttm-blog-classic clearfix">
+                            
+                           <!-- ttm-blog-classic-content -->
+                           <div class="ttm-blog-classic-content">
+                                
+                                <div class="entry-content">
+                                    <p><img class="img-fluid alignleft" src="{{news.image.url}}" alt="">
+                                    
+                                        <h4>{{news.title}}</h4>
+                                        <div class="post-meta"><strong>
+                                            <span class="ttm-meta-line byline"><i class="fa fa-user"></i> By: {{news.post_by}}</span>
+                                            <span class="ttm-meta-line cat-links"><i class="fa fa-calendar"></i> On: {{news.post_date}} </span>
+                                            <span class="ttm-meta-line cat-links"><i class="fa fa-tag"></i> Tag: {{news.category}}</span></strong>
+                                        </div>
+                                    </p>
+                                    <p>{{news.description}}</p>
+                                
+                                </div>
+                            </div><!-- ttm-blog-classic-content end -->
+                          
+                            <!-- post-featured-wrapper -->
+                           <div class="ttm-post-featured-wrapper ttm-featured-wrapper">
+                               
+                               <div class="ttm-box-post-date">
+                                   <span class="ttm-entry-date">
+                                       <time class="entry-date" datetime="{{news.post_date}}">{{news.post_date.day}} <span class="entry-month">Jan<span class="entry-year">{{news.post_date.year}}</span></span></time>
+                                   </span>
+                               </div>
+                           </div><!-- post-featured-wrapper end -->
+
+                       </article><!-- post end -->
+                </div>
+
+
+                <div class="col-lg-3 widget-area sidebar-right ttm-col-bgcolor-yes ttm-bg ttm-right-span ttm-bgcolor-grey">
+                    <!-- <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div> -->
+                    <aside class="widget widget-search">
+                        <form role="search" method="get" class="search-form  box-shadow" action="#">
+                            <label>
+                                <span class="screen-reader-text">Search for:</span>
+                                <input type="search" class="input-text" placeholder="Search …" value="" name="s">
+                            </label>
+                            <input type="submit" class="search-submit" value="Search">
+                        </form>
+                    </aside>
+                    <aside class="widget widget-categories">
+                        <h3 class="widget-title">Categories</h3>
+                        <ul>
+                            {% for cat in category %}
+                            <li><a href="{% url 'news_by_cat' pk=cat.id %}">{{cat.name}}</a><span>{{cat.news_set.all.count}}</span></li>
+                            {% endfor %}
+                        </ul>
+                    </aside>
+                </div>
+
+
+            </div><!-- row end -->
+
+
+            <div class="widget widget-recent-post">
+                <h3 class="widget-title">Related News</h3>
+
+                <div class="row multi-columns-row ttm-boxes-row-wrapper">
+
+                    {% for news in related_news %}
+                    {%if forloop.counter <= 3 %}
+
+                    <div class="ttm-box-col-wrapper col-lg-4 col-md-6 col-sm-12">
+                        <!-- featured-imagebox-post -->
+                        <div class="featured-imagebox featured-imagebox-post ttm-box-view-left-image box-shadow row">
+                            <div class="col-lg-4 col-md-12 ttm-featured-img-left">
+                                <div class="ttm-post-featured-outer">
+                                    <div class="ttm-post-thumbnail featured-thumbnail">
+                                        <img class="img-fluid" src="{{news.image.url}}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-12 featured-content featured-content-post">
+                                <div class="post-title featured-title">
+                                    <h5><a href="{% url 'news_detail' pk=news.id %}">{{news.title}}</a></h5>
+                                </div>
+                                <div class="post-meta">
+                                    <span class="ttm-meta-line comments-link">{{news.post_date}}</span>
+                                </div>
+                            </div>
+                        </div><!-- featured-imagebox-post end-->
+                    </div>
+
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <!-- sidebar end -->
+
+
+</div><!--site-main end-->
+
+
+{% endblock %}

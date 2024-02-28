@@ -1,0 +1,124 @@
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'staff:applications' %}">Applications</a></li>
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="col-6">
+                        <h4 class="card-title">List of Applications</h4>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button class="btn ml-2" style="background-color:#294e6f; color: #fff;">
+                            <a href="{% url 'staff:add_application' %}">Add Application</a>
+                        </button>
+                    </div>
+                    <div class="float-right">
+                        <form method="GET" action="{% url 'staff:applications' %}" class="form-inline">
+                        </form>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <table class="table table-striped table-bordered multi-ordering">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Document</th>
+                                    <th>Letter </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for applications in application %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ applications.name }}</td>
+                                    <td><a href="{% url 'staff:application_detail' id=applications.id %}">
+                                        {{applications.title}}</a>
+                                    </td>
+                                    <td>{{ applications.phone }}</td>
+                                    <td>{{ applications.email }}</td>
+                                    <td><a href="{{ applications.cv_document.url }}" download>Download CV</a></td>
+                                    <td>{{ applications.letter|safe }}</td>
+                                    <td>
+                                        <span class="dropdown">
+                                            <a id="btnSearchDrop31" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="true" class="dropdown-toggle dropdown-menu-right">
+                                                Actions</a>
+                                            <span aria-labelledby="btnSearchDrop31"
+                                                class="dropdown-menu mt-1 dropdown-menu-right">
+                                                <a href="{% url 'staff:application_update' id=applications.id %}"
+                                                    class="dropdown-item"><i class="fa fa-edit"></i>Edit
+                                                    Application</a>
+                                                <a onclick="return confirm('are you sure do you want to delete this item')"
+                                                href="{% url 'staff:application_delete' id=applications.id %}"
+                                                    class="dropdown-item">
+                                                    <i class="fa fa-trash danger"></i> Delete application
+                                                </a>
+                                            </span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+<script>
+    function confirmDelete(applicationId) {
+        if (confirm("Are you sure you want to delete this application?")) {
+            const apiUrl = `/application_delete/${applicationId}/`;
+
+            fetch(apiUrl, {
+                method: 'DELETE',
+                headers: { 'X-CSRFToken': getCookie('csrftoken') },
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        console.error('Failed to delete application. Server returned:', response.status, response.statusText);
+                        throw new Error('Failed to delete application');
+                    }
+                })
+                .then(data => {
+                    console.log('Server response:', data.message);
+                    // Optionally, you can update the UI or reload the page here
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    }
+
+    function getCookie(name) {
+        const cookie = document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`);
+        return cookie ? cookie.pop() : '';
+    }
+</script>
+
+
+
+{% block js %}
+<script>
+    document.getElementById('id_desc').removeAttribute('required');
+</script>
+<script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'tiny_mce/tiny_mce.js' %}"></script>
+<script src="{% static 'django_tinymce/init_tinymce.js' %}"></script>
+{% endblock %}

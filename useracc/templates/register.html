@@ -1,0 +1,77 @@
+<!-- registration/register.html -->
+{% extends 'front/base.html' %}
+
+{% block content %}
+<div style="margin: 0 auto; width: 50%;">
+    <h2 style="text-align: center;">Register</h2>
+    <form method="post" enctype="multipart/form-data"
+        style="margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
+        {% csrf_token %}
+
+        <div style="margin-bottom: 10px; flex: 0 0 48%;">
+            <label for="{{ form.username.id_for_label }}">Email:</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+            <div style="color: red;">{{ form.username.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div style="margin-bottom: 10px; flex: 0 0 48%;">
+            <label for="{{ form.full_name.id_for_label }}">Full Name:</label>
+            {{ form.fullname }}
+            {% if form.full_name.errors %}
+            <div style="color: red;">{{ form.full_name.errors }}</div>
+            {% endif %}
+        </div>
+
+       
+
+        <div style="margin-bottom: 10px; flex: 0 0 48%;">
+            <label for="{{ form.gender.id_for_label }}">Gender:</label>
+            {{ form.gender }}
+            {% if form.gender.errors %}
+            <div style="color: red;">{{ form.gender.errors }}</div>
+            {% endif %}
+        </div>
+
+
+        <div style="margin-bottom: 10px; flex: 0 0 48%;">
+            <label for="{{ form.phone.id_for_label }}">Phone:</label>
+            {{ form.phone }}
+            {% if form.phone.errors %}
+            <div style="color: red;">{{ form.phone.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div style="margin-bottom: 10px; flex: 0 0 100%;">
+            <label for="{{ form.profile.id_for_label }}">Profile Picture:</label>
+            {{ form.profile }}
+            {% if form.profile.errors %}
+            <div style="color: red;">{{ form.profile.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div style="margin-bottom: 10px; flex: 0 0 48%;">
+            <label for="{{ form.password1.id_for_label }}">Password:</label>
+            {{ form.password1 }}
+            {% if form.password1.errors %}
+            <div style="color: red;">{{ form.password1.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div style="margin-bottom: 10px; flex: 0 0 48%;">
+            <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+            <div style="color: red;">{{ form.password2.errors }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit"
+            style="width: 100%; padding: 10px; background-color: #4CAF50; color: #fff; border: none; cursor: pointer;">Register</button>
+    </form>
+
+    <p style="text-align: center; margin-top: 20px;">Already have an account? <a href="{% url 'useracc:login' %}"
+            style="color: #4CAF50; font-weight: bold;">Login</a></p>
+</div>
+{% endblock %}

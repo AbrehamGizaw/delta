@@ -1,0 +1,140 @@
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'staff:applications' %}">Feedbacks</a></li>
+<li class="breadcrumb-item"><a href="#">Add Feedbacks</a></li>
+{% endblock %}
+
+{% block content %}
+<!--site-main start-->
+<div class="site-main">
+    <section class="ttm-row clearfix">
+        <div class="container">
+            <div class="row pt-60 res-991-pt-0">
+                <div class="col-lg-12">
+                    <div class="pr-40 res-991-pr-0 res-991-pb-30">
+                        <!-- section-title -->
+                        <h4 class="h4-md">Feedbacks for team</h4>
+                        <!-- section-title end -->
+
+
+                        <form action="{% url 'staff:feedbacks' %}" method="POST" enctype="multipart/form-data"
+                            class="row">
+
+
+                            {% csrf_token %}
+                            <!-- Add a hidden input field for update flag -->
+                            {% if update %}
+                            <input type="hidden" name="update" value="true">
+                            {% endif %}
+
+                            <!-- Full Name, Phone, Email -->
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_name" class="form-label">Full Name*</label>
+                                    <input type="text" name="name" class="form-control" maxlength="255" required=""
+                                        id="id_name" value="{{ application.name }}">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_phone" class="form-label">Phone Number</label>
+                                    <input type="tel" name="phone" class="form-control" placeholder="+251.."
+                                        maxlength="20" id="id_phone" value="{{ application.phone }}">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_email" class="form-label">Email*</label>
+                                    <input type="email" name="email" class="form-control"
+                                        placeholder="example@gmail.com" maxlength="254" id="id_email"
+                                        value="{{ application.email }}">
+                                </div>
+                            </div>
+
+                            <!-- Photo, CV Document, Original Document -->
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_image" class="form-label">Photo (optional)</label>
+                                    <input type="file" name="image" class="form-control" accept="image/*" id="id_image">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_cv" class="form-label">CV Document*</label>
+                                    <input type="file" name="cv_document" class="form-control" required="" id="id_cv">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_concept_note" class="form-label">Original Document*</label>
+                                    <input type="file" name="original_document" class="form-control" required=""
+                                        id="id_concept_note">
+                                </div>
+                            </div>
+
+                            <!-- Supplementary Document, Department -->
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="id_supplementary_docs" class="form-label">Supplementary Docs
+                                    </label>
+                                    <input type="file" name="supplementary_document" class="form-control"
+                                        id="id_supplementary_docs">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="id_department" class="form-label">Department</label>
+                                    <input type="text" name="title" class="form-control" id="id_department"
+                                        value="{{ application.department }}">
+                                </div>
+                            </div>
+                            <!-- Other form fields remain unchanged -->
+
+                            <!-- Submission Date -->
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_submission_date" class="form-label">Submission Date*</label>
+                                    <input type="date" name="submission_date" class="form-control" required=""
+                                        id="id_submission_date"
+                                        value="{% if update %}{{ application.submission_date|date:'Y-m-d' }}{% else %}{% now 'Y-m-d' %}{% endif %}">
+                                </div>
+                            </div>
+
+
+                            <!-- Application Letter -->
+                            <div class="col-md-12 mb-3">
+                                <label for="id_desc" class="form-label">Something about Your Application
+                                    (optional)</label>
+                                <textarea class="form-control" cols="40" id="id_desc" name="letter"
+                                    placeholder="Write your content here..." rows="5"
+                                    style="height: 100px;">{{ application.letter }}</textarea>
+                            </div>
+
+                            <!-- Form Submit Button -->
+                            <div class="col-md-12 mb-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <strong>Error!</strong> Please correct the following issues:
+                            <ul>
+                                {% for field, error_list in form.errors.items %}
+                                {% for error in error_list %}
+                                <li>{{ field }}: {{ error }}</li>
+                                {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

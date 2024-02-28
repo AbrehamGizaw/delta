@@ -1,0 +1,46 @@
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'staff:applications' %}">Applications</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Application Detail</h1>
+            <div class="row">
+                <div class="col-md-6 border-right border-primary pr-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Title:</strong> {{ application.title }}</li>
+                        <li class="list-group-item"><strong>Name:</strong> {{ application.name }}</li>
+                        <li class="list-group-item"><strong>Phone:</strong> {{ application.phone }}</li>
+                        <li class="list-group-item"><strong>Email:</strong> {{ application.email }}</li>
+                        <li class="list-group-item"><strong>Original Document:</strong><br> <a href="{{ application.original_document.url }}" class="btn btn-success">{{ application.original_document.name }}</a></li>
+                        <li class="list-group-item "><strong>CV Document:</strong> <br> <a href="{{ application.cv_document.url }}" class="btn btn-success">{{ application.cv_document.name }}</a></li>
+                        <li class="list-group-item "><strong>Supplementary Document:</strong> <br> <a href="{{ application.supplementary_document.url }}" class="btn btn-success">{{ application.supplementary_document.name }}</a></li>
+                    
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Submitted Date:</strong> {{ application.submitted_date }}</li>
+                        <li class="list-group-item"><strong>Image:</strong><br><img src="{{ application.image.url }}" alt="Application Image" class="img-fluid"></li>
+                        </ul>
+                </div>
+            </div>
+            <div class="mt-4 border border-primary p-3">
+                <h5 class="card-subtitle mb-2 text-muted">Letter:</h5>
+                <p class="card-text">{{ application.letter|safe }}</p>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a href="{% url 'staff:applications' %}" class="btn btn-primary">Applications</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

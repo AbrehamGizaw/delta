@@ -1,0 +1,282 @@
+{% extends 'front/base.html' %} {% load static %}
+{% block page-name %}<span>Services </span> {% endblock %}
+{% block css %}
+<style>
+  .featured-desc {
+    overflow: hidden;
+    /* Add this to contain the limited text within the box */
+  }
+
+  .hidden-content {
+    display: none;
+  }
+
+  .ttm-box-col-wrapper {
+    margin-bottom: 20px;
+    /* Add some spacing between sections */
+  }
+
+  /* Optional: Add some styling for better visualization */
+  .featured-imagebox {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .equal-height-container {
+    display: flex;
+    justify-content: left;
+    padding-left: 7%;
+    padding-right: 5%;
+  }
+</style>
+{% endblock %} 
+{% block about-main %} active {% endblock %} 
+{% block service %} active {% endblock %} 
+
+{% block content %}
+<!--site-main start-->
+<div class="site-main">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8 col-md-12">
+      <!-- section-title -->
+      <div class=" with-desc text-center clearfix">
+        <div class="title-header">
+        <!-- row -->
+        <div class="row">
+          <div class="col-lg-12 col-md-12 pt-25 mt-25">
+              <!-- section-title -->
+              <div class="section-title with-desc clearfix">
+                  <div class="title-header text-center">
+                      <h5 > Our services </h5>
+                  </div>
+              </div><!-- section-title end -->
+          </div>
+      </div><!-- row end -->
+        </div>
+      </div>
+      <!-- section-title end -->
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+  <!-- row end -->
+  <div class="row equal-height-container">
+    <div class="ttm-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+      <!--featured-imagebox-->
+      <div class="featured-imagebox ttm-box-view-top-image box-shadow">
+        <div class="featured-content featured-content-bottom">
+          <div class="featured-title">
+            <h5><a href="single-blog.html">Psychiatry</a></h5>
+          </div>
+          <div class="featured-desc">
+            <p class="limited-text">
+              Our Cardiology hospital utilizes state-of-the-art technology
+              and employs a team of true experts.
+            </p>
+            <div id="Morecontent1" class="hidden-content">
+              <p>
+                We offer personalized treatment plans for various mental health conditions.
+              </p>
+              <p>
+                Our team of psychiatrists and therapists is dedicated to supporting patients on their mental health
+                journey.
+              </p>
+            </div>
+            <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor" onclick="toggleContent('Morecontent1')">READ MORE</a>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- featured-imagebox end-->
+    </div>
+    <div class="ttm-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+      <!--featured-imagebox-->
+      <div class="featured-imagebox ttm-box-view-top-image box-shadow">
+        <div class="featured-content featured-content-bottom">
+          <div class="featured-title">
+            <h5><a href="">Medical Oncology</a></h5>
+          </div>
+          <div class="featured-desc">
+            <p class="limited-text">
+              Our Medical Oncology department is dedicated to providing advanced cancer treatments.
+            </p>
+            <!-- Hidden paragraphs -->
+            <div id="MoreContent2" class="hidden-content">
+              <p>
+                We offer personalized treatment plans, including chemotherapy and targeted therapies.
+              </p>
+              <p>
+                Our team of oncologists is committed to delivering compassionate care for cancer patients.
+              </p>
+            </div>
+            <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor" onclick="toggleContent('MoreContent2')">READ MORE</a>
+          </div>
+        </div>
+      </div>
+      <!-- featured-imagebox end-->
+    </div>
+    <div class="ttm-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+      <!--featured-imagebox-->
+      <div class="featured-imagebox ttm-box-view-top-image box-shadow">
+        <div class="featured-content featured-content-bottom">
+          <div class="featured-title">
+            <h5><a href="">Radiation Therapy</a></h5>
+          </div>
+          <div class="featured-desc">
+            <p class="limited-text">
+              Our Radiation Therapy department provides cutting-edge radiation treatments for cancer patients.
+            </p>
+            <!-- Hidden paragraphs -->
+            <div id="MoreContent3" class="hidden-content">
+              <p>
+                We utilize advanced technologies to target cancer cells while minimizing impact on healthy tissues.
+              </p>
+              <p>
+                Our radiation oncologists work collaboratively to ensure the best possible outcomes.
+              </p>
+            </div>
+            <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor" onclick="toggleContent('MoreContent3')">READ MORE</a>
+          </div>
+        </div>
+      </div>
+      <!-- featured-imagebox end-->
+    </div>
+    <div class="ttm-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+      <!--featured-imagebox-->
+      <div class="featured-imagebox ttm-box-view-top-image box-shadow">
+        <div class="featured-content featured-content-bottom">
+          <div class="featured-title">
+            <h5><a href="">Supportive Care</a></h5>
+          </div>
+          <div class="featured-desc">
+            <p class="limited-text">
+              Our Supportive Care services focus on improving the quality of life for cancer patients and
+              their families.
+            </p>
+            <!-- Hidden paragraphs -->
+            <div id="MoreContent4" class="hidden-content">
+              <p>
+                We offer counseling, pain management, and holistic support to address the physical and
+                emotional needs of patients.
+              </p>
+              <p>
+                Our multidisciplinary team works together to enhance overall well-being during cancer
+                treatment.
+              </p>
+            </div>
+            <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor" onclick="toggleContent('MoreContent4')">READ MORE</a>
+          </div>
+        </div>
+      </div>
+      <!-- featured-imagebox end-->
+    </div>
+    <div class="ttm-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+      <!--featured-imagebox-->
+      <div class="featured-imagebox ttm-box-view-top-image box-shadow">
+        <div class="featured-content featured-content-bottom">
+          <div class="featured-title">
+            <h5><a href="">Patient Education</a></h5>
+          </div>
+          <div class="featured-desc">
+            <p class="limited-text">
+              In our commitment to holistic care, we provide extensive patient education programs, empowering
+              individuals with the knowledge needed to make informed health decisions.
+            </p>
+            <!-- Hidden paragraphs -->
+            <div id="'MoreContent5" class="hidden-content">
+              <p>
+                Empowering patients with knowledge about various cancer types.
+                Workshops, seminars, and educational resources are provided to
+                help patients and their families understand the disease better.
+                In-depth information about diagnosis, treatment options, and
+                lifestyle changes is made accessible.
+              </p>
+              <p>
+                Our multidisciplinary team works together to enhance overall well-being during cancer treatment.
+              </p>
+            </div>
+            <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor" onclick="toggleContent('MoreContent5')">READ MORE</a>
+          </div>
+        </div>
+      </div>
+      <!-- featured-imagebox end-->
+    </div>
+    <div class="ttm-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+      <!--featured-imagebox-->
+      <div class="featured-imagebox ttm-box-view-top-image box-shadow">
+        <div class="featured-content featured-content-bottom">
+          <div class="featured-title">
+            <h5><a href=""> Preventive Measures</a></h5>
+          </div>
+          <div class="featured-desc">
+            <p class="limited-text">
+              Our emphasis on preventive measures involves proactive healthcare strategies, aiming to detect and
+              address potential health risks before they become more serious.
+            </p>
+            <!-- Hidden paragraphs -->
+            <div id="'MoreContent6" class="hidden-content">
+              <p>
+                Focusing on proactive steps to prevent cancer. Our programs
+                include guidance on healthy living, regular screenings, and
+                vaccination initiatives. Understanding and adopting preventive
+                measures are key components of our comprehensive approach to
+                cancer care.
+              </p>
+              <p>
+                Our multidisciplinary team works together to enhance overall well-being during cancer treatment.
+              </p>
+            </div>
+            <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor" onclick="toggleContent('MoreContent6')">READ MORE</a>
+          </div>
+        </div>
+      </div>
+      <!-- featured-imagebox end-->
+    </div>
+    <div class="ttm-box-col-wrapper col-lg-4 col-md-4 col-sm-6">
+      <!--featured-imagebox-->
+      <div class="featured-imagebox ttm-box-view-top-image box-shadow">
+        <div class="featured-content featured-content-bottom">
+          <div class="featured-title">
+            <h5><a href="">Wellness Programs </a></h5>
+          </div>
+          <div class="featured-desc">
+            <p class="limited-text">
+
+              Our wellness program is tailored to nurture overall well-being, offering a range of activities and
+              resources to support a healthy lifestyle and enhance the quality of life.
+
+            </p>
+            <!-- Hidden paragraphs -->
+            <div id="'MoreContent7" class="hidden-content">
+              <p>
+                Holistic approaches to enhance overall well-being. Our wellness
+                programs integrate complementary therapies, nutritional
+                counseling, and psychological support. We believe in addressing
+                the physical, emotional, and mental aspects of health to improve
+                the quality of life for our patients.
+              </p>
+              <p>
+                Our multidisciplinary team works together to enhance overall well-being during cancer treatment.
+              </p>
+            </div>
+            <a id="readMore" class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-color-skincolor" onclick="toggleContent('MoreContent7')">READ MORE</a>
+          </div>
+        </div>
+      </div>
+      <!-- featured-imagebox end-->
+    </div>
+    
+  </div>
+</div>
+
+<script>
+  function toggleContent(contentId) {
+    var content = document.getElementById(contentId);
+    content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+  
+  }
+</script>
+<!-- row end-->
+<!--site-main end-->
+{% endblock %}

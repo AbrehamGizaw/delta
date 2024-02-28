@@ -1,0 +1,47 @@
+{% extends 'front/base.html' %}
+{% load static %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'staff:teams' %}">teams</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">team Detail</h1>
+            <div class="row">
+                <div class="col-md-6 border ">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Role:</strong> {{ team.role }}</li>
+                        <li class="list-group-item"><strong>Name:</strong> {{ team.name }}</li>
+                        <li class="list-group-item"><strong>Phone:</strong> {{ team.phone }}</li>
+                        <li class="list-group-item"><strong>Email:</strong> {{ team.email }}</li>
+                        <li class="list-group-item"><strong>wind display:</strong> {{ team.get_wing_display }}</li>
+                        <li class="list-group-item "><strong>Is Active:</strong> {{ team.is_active}}</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Image:</strong><br>
+                            {% if team.image %} 
+                            <img src="{{ team.image.url }}" alt="team Image" class="img-fluid" style="width: 300px; height: 300px;">
+                            {% else %} 
+                            <p> Image not found </p>
+                            {% endif %} 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a href="{% url 'team' %}" class="btn btn-primary">teams</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+            

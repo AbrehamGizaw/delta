@@ -1,0 +1,46 @@
+{% extends 'front/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    
+</style>
+{% endblock %}
+
+{% block about-main %} active {% endblock %}
+{% block team %} active {% endblock %}
+{% block page-name %}<span>Team </span> {% endblock %}
+
+{% block content %}
+<section class="element-row element-style ">
+    <div class="container">
+        {% for wing, team_members in team_data.items %}
+        <div class="row section-title with-desc clearfix col-lg-12 title-header text-center">
+            <h5>{{ wing }}</h5>
+        </div>
+        <div class="row multi-columns-row ttm-boxes-row-wrapper">
+            {% for member in team_members %}
+            <div class="ttm-box-col-wrapper col-lg-3 col-sm-6 col-md-3 col-xs-12">
+                <div class="featured-imagebox featured-imagebox-team ttm-team-box-view-overlay">
+                    <div class="featured-thumbnail">
+                        <img src="{{member.image_url}}" alt="{{member.name}}'s image" class="img-fluid" style="width: 200px; height: 100px;">
+                    </div>
+                    <div class="ttm-box-view-overlay">
+                        <div class="featured-iconbox ttm-media-link">
+                            <a href="{% url 'team_detail' id=member.id %}"><i class="ti ti-plus"></i></a>
+                        </div>
+                    </div>
+                    <div class="featured-content featured-content-team">
+                        <div class="ttm-team-position">{{ member.role }}</div>
+                        <div class="featured-title">
+                            <h5><a href="">{{ member.name }}</a></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}        
+    </div>
+</section>
+{% endblock %}

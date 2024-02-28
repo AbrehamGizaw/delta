@@ -1,0 +1,185 @@
+{% extends 'staff/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'staff/css/pages/card-statistics.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'staff/css/pages/users.min.css' %}">
+<style>
+    /* Add hover effect to table rows */
+    .table tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>
+{% endblock %}
+
+{% block dashboard %} open hover {% endblock %}
+
+{% block content %}
+<div class="content-body">
+    <div class="row grouped-multiple-statistics-card">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-0">
+                    <h4 class="card-title">Call Applications</h4>
+                </div>
+                <div class="card-content">
+                    <div class="table-responsive position-relative table-bordered">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Applicant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for feed in application %}
+                                {% if forloop.counter <= 4 %} <tr>
+                                    <td><a href="">{{ feed.title }}</a></td>
+                                    <td>{{ feed.name }}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Card -->
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header border-0">
+                    <h4 class="card-title">Feedback from Visitors</h4>
+                </div>
+                <div class="card-content">
+                    <div class="table-responsive position-relative table-bordered">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for feed in feedback %}
+                                {% if forloop.counter <= 4 %} <tr>
+                                    <td><a href="">{{ feed.interest }}</a></td>
+                                    <td>{{ feed.email }}</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="col-12">
+
+            <div class="row">
+                <!-- Conducted Researches Card -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="font-large-1 text-center">
+                                {{ research|length }}<br>
+                                <i class="fa fa-file teal font-medium-2"></i>
+                                <span class="font-medium-2">
+                                    <a href="{% url 'staff:researches' %}" class="text-center">Conducted
+                                        Researches</a>
+                                </span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Applications Card -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="font-large-1 text-center">
+                                {{ application|length }}<br>
+                                <i class="fa fa-upload teal font-medium-2"></i>
+                                <span class="font-medium-2">
+                                    <a href="{% url 'staff:applications' %}">Applications</a>
+                                </span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hosted Events Card -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="font-large-1 text-center">
+                                {{ event|length }}<br>
+                                <i class="fa fa-calendar teal font-medium-2"></i>
+                                <span class="font-medium-2">
+                                    <a href="{% url 'staff:event' %}">Hosted Events</a>
+                                </span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Minimal modern charts for power consumption, region statistics and sales etc. starts here -->
+    <div class="row minimal-modern-charts match-height ">
+        <!-- Call Applications Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="font-large-1 text-center">
+                        {{ call_application|length }}<br>
+                        <i class="fa fa-check-square teal font-medium-2"></i>
+                        <span class="font-medium-2">
+                            <a href="{% url 'staff:call_applications' %}">Call Applications</a>
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registered Users Card -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="font-large-1 text-center">
+                        {{ users|length }}<br>
+                        <i class="fa fa-user teal font-medium-2"></i>
+                        <span class="font-medium-2">
+                            <a href="{% url 'useracc:staff_page' %}">Registered Users</a>
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'staff/vendors/js/charts/chart.min.js' %}"></script>
+<script src="{% static 'staff/vendors/js/charts/apexcharts/unminify.js' %}"></script>
+
+<!-- BEGIN: Page JS-->
+<script src="{% static 'staff/js/scripts/cards/card-statistics.min.js' %}"></script>
+<!-- BEGIN: Page JS-->
+
+<script src="{% static 'staff/vendors/js/pickers/dateTime/moment-with-locales.min.js' %}"></script>
+<script src="{% static 'staff/vendors/js/pickers/daterange/daterangepicker.js' %}"></script>
+<script src="{% static 'staff/vendors/js/pickers/pickadate/picker.js' %}"></script>
+<script src="{% static 'staff/vendors/js/pickers/pickadate/picker.date.js' %}"></script>
+
+<script src="{% static 'staff/vendors/js/extensions/dropzone.min.js' %}"></script>
+<script src="{% static 'staff/vendors/js/ui/prism.min.js' %}"></script>
+<script src="{% static 'staff/js/scripts/charts/chartjs/line/line-area.min.js' %}"></script>
+<script src="{% static 'staff/js/scripts/charts/chartjs/bar/column.js' %}"></script>
+<script src="{% static 'staff/js/scripts/charts/chartjs/pie-doughnut/pie-simple.min.js' %}"></script>
+<script src="{% static 'staff/js/scripts/charts/chartjs/pie-doughnut/doughnut-simple.min.js' %}"></script>
+{% endblock %}

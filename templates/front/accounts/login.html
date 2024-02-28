@@ -1,0 +1,136 @@
+
+
+{% extends 'front/base.html' %}
+{% load static %}
+
+
+{% block signin %} active {% endblock %}
+{% block login %} active {% endblock %}
+
+{% block page-name %}<span> Login </span> {% endblock %}
+
+{% block content %}
+
+	   <!--site-main start-->
+       <div class="site-main">
+
+        <!-- checkout-section -->
+        <section class="ttm-row checkout-section break-991-colum clearfix">
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 ">
+                        <!-- section-title -->
+                        <div class="section-title with-desc clearfix">
+                            <div class="title-header text-center">
+                                <h5 >Login to delta </h5>
+                            </div>
+                        </div><!-- section-title end -->
+                    </div>
+                </div><!-- row end -->
+                <!-- row -->
+                <div class="row pt-15 text-cente" style="margin-left: 300px;">
+                    <div class="col-lg-8 col-md-12">
+                        <!--pricing-plan-section-->
+                        <div class="ttm-pricing-plan ttm-ptablebox-featured-col clearfix">
+                            <div class="ttm-ptable-main">
+                                
+                                <div class=""><img src="{% static 'front/images/logo-white.png' %}" style="width: 120px;"></div>
+                            </div>
+                            <div class="ttm-ptablebox-content">
+                                <div class="ttm-ptablebox-features">
+                                    <form action="" method="POST" class="checkout row" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                                               
+    
+                                        
+                                            <div  class="col-md-12 contact-form">
+                                                <!-- <img src="{% static 'front/images/logo/loggo.jpg' %}" width="120" height="60" class="mb-5" > -->
+                                                <input type="text" name="email" autocomplete="email" class="input-text mb-10" placeholder="Enter Your Email*" required> 
+                                                    
+                                                <input type="password"  name="password" class="input-text " placeholder="password*" required> 
+    
+                                                    
+                                             <!-- Contact Form Button -->
+                                                
+                                                <div class="price_btn">
+                                                    <button class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-fill ttm-btn-bgcolor-white ttm-btn-color-skincolor " type="submit">Login</button>
+                                                </div>
+                                                
+    
+                                                <p class="pt-3"> Do Not Have an Account? </p> 
+                                                    <a href="{% url 'accounts:register' %}" class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-border ttm-btn-color-black"> Register </a>  
+                                            </div>
+                                                              
+                                   </form> 
+                                </div>
+                            </div>
+                        </div><!--pricing-plan end-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- checkout-section end -->
+
+
+    </div><!--site-main end-->
+
+{% endblock %}
+
+
+
+<br><br><br>
+Login 
+
+<div style="padding: 20px;">
+
+    {% if loggedin %}
+    
+    <h4> successfully logged in </h4>
+    
+    {% elif loggedout %}
+
+    <h4> successfully logged out </h4>
+
+    {% endif %}
+
+    <form action="" method="POST" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group mb-3"> 
+            <input type="text" name="email" autocomplete="email" class="form-control"  placeholder="Your Email">
+
+            <!-- {{form.email}} -->
+            <!-- <input type="text" class="form-control" placeholder="email" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+        <div class="input-group mb-3">
+            <input type="password" required  name="password" class="form-control"  placeholder="Password">
+            
+            
+                <!-- <i class="fa fa-eye" id="id_eye" title="Show Password" onclick="make_visible()">v</i> -->
+           
+
+            <!-- {{form.password}} -->
+            <!-- <input type="text" class="form-control" placeholder="password" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+        </div>
+        <br><br>
+
+
+        <button type="submit"  class="btn btn-dark" >Login</button>
+    </form>
+
+
+    
+    {% if user.is_authenticated %}
+    
+   <a href="{% url 'accounts:logout' %}"> <button  class="btn btn-dark" >Logout</button> </a>
+   {% endif %}
+</div>
+
+
+
+
+
+
+
+

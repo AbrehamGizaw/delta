@@ -1,0 +1,273 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from themetechmount.com/html/delmont/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 May 2023 18:01:08 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="EKC, Delta, Addis Ababa University, Black Lion Hospital, AAU CHS Delta" />
+    <meta name="description" content="Delmont &#8211; Medical, Health and Hospital Html Template" />
+    <meta name="author" content="https://debolx.com/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+    <title>Delta &#8211; Cancer Screening and Treatment Center</title>
+
+    <!-- favicon icon -->
+    <link rel="shortcut icon" href="{% static 'front/images/favicon.png' %}" />
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/bootstrap.min.css' %}" />
+
+    <!-- animate -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/animate.css' %}" />
+
+    <!-- owl-carousel -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/owl.carousel.css' %}">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/font-awesome.css' %}" />
+
+    <!-- themify -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/themify-icons.css' %}" />
+
+    <!-- flaticon -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/flaticon.css' %}" />
+
+
+    <!-- REVOLUTION LAYERS STYLES -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'front/revolution/css/layers.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'front/revolution/css/settings.css' %}">
+
+    <!-- prettyphoto -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/prettyPhoto.css' %}">
+
+    <!-- twentytwenty -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/twentytwenty.css' %}" />
+
+    <!-- shortcodes -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/shortcodes.css' %}" />
+
+    <!-- main -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/main.css' %}" />
+
+    <!-- responsive -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/responsive.css' %}" />
+    {% block css %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <!--page start-->
+    <div class="page">
+
+        <!-- preloader start -->
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        <!-- preloader end -->
+
+        <!--header start-->
+        <header id="masthead" class="header ttm-header-style-overlay">
+
+            <!-- ttm-header-wrap -->
+            <div class="ttm-header-wrap">
+                <!-- ttm-stickable-header-w -->
+                <div id="ttm-stickable-header-w" class="ttm-stickable-header-w  clearfix" {% if index %}
+                    style="background-color: transparent;" {% else %} style="background-color: #033b4a;" {% endif %}>
+                    <div id="site-header-menu" class="site-header-menu">
+                        <div class="site-header-menu-inner ttm-stickable-header">
+                            <div class="container">
+                                <!-- site-branding -->
+                                <div class="site-branding">
+                                    <a class="home-link" href="" title="Delta" rel="home">
+                                        <img width="151" height="33" id="logo-img" class="img-center"
+                                            src="{% static 'front/images/logo-white.png' %}" alt="logo-img">
+                                    </a>
+                                </div>
+                                <!-- site-branding end -->
+                                <!--site-navigation -->
+                                <div id="site-navigation" class="site-navigation">
+                                    <!-- mobile menu -->
+                                    <div class="ttm-menu-toggle">
+                                        <input type="checkbox" id="menu-toggle-form" />
+                                        <label for="menu-toggle-form" class="ttm-menu-toggle-block">
+                                            <span class="toggle-block toggle-blocks-1"></span>
+                                            <span class="toggle-block toggle-blocks-2"></span>
+                                            <span class="toggle-block toggle-blocks-3"></span>
+                                        </label>
+                                    </div>
+                                    <!-- end mobile menu -->
+                                    <nav id="menu" class="menu">
+                                        <ul class="dropdown">
+                                            <li class="{% block home %} {% endblock %}"><a
+                                                    href="{% url 'home' %}">Home</a></li>
+                                            <li class="{% block about-main %} {% endblock %}"><a href="">About Us</a>
+                                                <ul>
+                                                    <li class="{% block about %} {% endblock %}"><a
+                                                            href="{% url 'about' %}">About Us</a></li>
+                                                    <li class="{% block service %} {% endblock %}"><a
+                                                            href="{% url 'services' %}">Our Service</a></li>
+                                                    <li class="{% block team %} {% endblock %}"><a
+                                                            href="{% url 'team' %}">Our Team</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="{% block news-main %} {% endblock %}"><a href="">News, Gallery &
+                                                    Events</a>
+                                                <ul>
+                                                    <li class="{% block news %} {% endblock %}"><a
+                                                            href="{% url 'news' %}">News</a></li>
+                                                    <li class="{% block gallery %} {% endblock %}"><a
+                                                            href="{% url 'gallery' %}">Gallery</a></li>
+                                                    <li class="{% block event %} {% endblock %}"><a href="">Events</a>
+                                                        <ul>
+                                                            <li class="{% block ongoing %} {% endblock %}"><a
+                                                                    href="{% url 'events' type='Ongoing' %}">
+                                                                    OngoingEvents</a></li>
+                                                            <li class="{% block upcoming %} {% endblock %}"><a
+                                                                    href="{% url 'events' type='Upcoming' %}">Upcoming
+                                                                    Events</a></li>
+                                                            <li class="{% block past %} {% endblock %}"><a
+                                                                    href="{% url 'events' type='Past' %}">Past
+                                                                    Events</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="{% block pub %} {% endblock %}"><a href="">Publications</a>
+                                                <ul>
+                                                    <li class="{% block research %} {% endblock %}"><a
+                                                            href="{% url 'research' %}">Research Outputs</a>
+                                                    </li>
+                                                    <li class="{% block call %} {% endblock %}"><a
+                                                            href="{% url 'call_application' %}">Call of
+                                                            Applications</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="{% block contact %} {% endblock %}"><a
+                                                    href="{% url 'contact' %}">Contact Us</a></li>
+
+                                            
+
+                                            <li class="{% block staff-main %} {% endblock %}"><a href="">Dashboard</a>
+                                                <ul>
+                                                    <li class="{% block staff %} {% endblock %}"><a
+                                                            href="{% url 'staff:index' %}">Dashboard</a></li>
+                                                    <li class="{% block profile %} {% endblock %}"><a href="">My
+                                                            Profile</a></li>
+                                                    <li class="{% block logiut %} {% endblock %}"><a
+                                                            href="{% url 'useracc:logout' %}">Logout</a></li>
+                                                </ul>
+                                            </li>
+
+
+                                            <li class="{% block signin %} {% endblock %}"><a href="">Signin</a>
+                                                <ul>
+                                                    <li class="{% block register %} {% endblock %}"><a
+                                                            href="{% url 'useracc:register' %}">Register</a></li>
+                                                    <li class="{% block login %} {% endblock %}"><a
+                                                            href="{% url 'useracc:login' %}">Login</a></li>
+                                                </ul>
+                                            </li>
+
+                                           
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- site-navigation end-->
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- ttm-stickable-header-w end-->
+            </div>
+            <!--ttm-header-wrap end -->
+        </header>
+        <!--header end-->
+
+        {% if not index %}
+
+        <!-- page-title -->
+        <div class="ttm-page-title-row mt-10">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-box ttm-textcolor-white">
+                            <div class="breadcrumb-wrapper">
+                                <div class="container">
+                                    <div class="breadcrumb-wrapper-inner">
+                                        <span>
+                                            <a title="" href="{% url 'home' %}" class="home"><i class="themifyicon ti-home"></i>&nbsp;&nbsp;Home</a>
+                                        </span>
+                                        <span class="ttm-bread-sep">&nbsp; | &nbsp;</span>
+                                        {% block page-name %} {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- page-title end-->
+
+
+        {% endif %}
+
+        {% block content %}
+
+        {% endblock %}
+
+        {% include 'front/footer.html'%}
+
+        <!--back-to-top start-->
+        <a id="totop" href="#top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!--back-to-top end-->
+
+    </div><!-- page end -->
+
+
+    <!-- Javascript -->
+
+    <script src="{% static 'front/js/jquery.min.js' %}"></script>
+    <script src="{% static 'front/js/tether.min.js' %}"></script>
+    <script src="{% static 'front/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'front/js/jquery.easing.js' %}"></script>
+    <script src="{% static 'front/js/jquery-waypoints.js' %}"></script>
+    <script src="{% static 'front/js/jquery-validate.js' %}"></script>
+    <script src="{% static 'front/js/owl.carousel.js' %}"></script>
+    <script src="{% static 'front/js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'front/js/numinate.min.js' %}"></script>
+    <script src="{% static 'front/js/jquery.event.move.js' %}"></script>
+    <script src="{% static 'front/js/jquery.twentytwenty.js' %}"></script>
+    <script src="{% static 'front/js/booked-calendar.js' %}"></script>
+    <script src="{% static 'front/js/main.js' %}"></script>
+
+    <!-- Revolution Slider -->
+    <script src="{% static 'front/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+    <script src="{% static 'front/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+    <script src="{% static 'front/revolution/js/slider.js' %}"></script>
+
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+
+    <script src="{% static 'front/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+    <script src="{% static 'front/revolution/js/extensions/revolution.extension.carousel.min.js' %}"></script>
+    <script src="{% static 'front/revolution/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
+    <script src="{% static 'front/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+    <script src="{% static 'front/revolution/js/extensions/revolution.extension.migration.min.js' %}"></script>
+    <script src="{% static 'front/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+    <script src="{% static 'front/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+    <script src="{% static 'front/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+
+    <!-- Javascript end-->
+
+</body>
+
+<!-- Mirrored from themetechmount.com/html/delmont/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 May 2023 18:02:34 GMT -->
+
+</html>

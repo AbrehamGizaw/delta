@@ -1,0 +1,72 @@
+
+
+{% extends 'front/base.html' %}
+
+{% load static %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block news-main %} active {% endblock %}
+{% block event %} active {% endblock %}
+{% block upcoming %} active {% endblock %}
+
+{% block page-name %}<span> {{type}} Events </span> {% endblock %}
+
+{% block content %}
+
+ 
+    <!--site-main start-->
+    <div class="site-main">
+
+        <section class="clearfix">
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 pt-25 mt-25">
+                        <!-- section-title -->
+                        <div class="section-title with-desc clearfix">
+                            <div class="title-header text-center">
+                                <h5 > {{type}} EVENTS</h5>
+                            </div>
+                        </div><!-- section-title end -->
+                    </div>
+                </div><!-- row end -->
+
+                <div class="row pt-15">
+                    {% for event in events %}
+                    <div class="col-lg-4 col-md-12">
+                        <!--ttm-pricing-plan-->
+                        
+                        <div class="ttm-pricing-plan clearfix" style="align-items: left!important;">
+                            <div class="ttm-ptable-main">
+                                <div class="ttm-ptable-icon"><i class="fa fa-star"></i></div>
+                            </div>
+                            <div class="ttm-ptablebox-content">
+                                <div class="ttm-ptablebox-features">
+                                    <ul class="ttm-feature-lines" >
+                                        <li style="font-size: 20px;"> <span><i class="fa fa-list"></i> </span>{{event.title}} </li>
+                                        <li> <span><i class="fa fa-map-marker"></i> </span>{{event.place}}</li>
+                                        <li><span><i class="fa fa-user"></i> </span>{{event.event_handler}}</li>
+                                        <li><span><i class="fa fa-calendar"></i> </span>{{event.start_date|date:'M d Y'}}</li>
+                                        <li><span><i class="fa fa-clock-o"></i> </span>11:00 pm</li>
+                                    </ul>
+                                </div>
+                                <div class="price_btn">
+                                    <a class="ttm-btn ttm-btn-size-md ttm-btn-shape-square ttm-btn-style-border ttm-btn-bgcolor-white ttm-btn-color-black mb-20" href="#">More Services</a>
+                                </div>
+                            </div>
+                        </div><!--ttm-pricing-plan-->
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </section>
+
+        
+    </div><!--site-main end-->
+
+
+{% endblock %}

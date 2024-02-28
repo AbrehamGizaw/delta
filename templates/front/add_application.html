@@ -1,0 +1,116 @@
+{% extends 'front/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!--site-main start-->
+<div class="site-main">
+    <section class="ttm-row clearfix">
+        <div class="container">
+            <div class="row pt-60 res-991-pt-0">
+                <div class="col-lg-12">
+                    <div class="pr-40 res-991-pr-0 res-991-pb-30">
+                        <!-- section-title -->
+                        <h4 class="h4-md">Applying for: <span class="text-primary h4-md">{{title}}</span></h4>
+                        <!-- section-title end -->
+
+
+                        <form action="{% url 'add_application' title %}" method="post" enctype="multipart/form-data"
+                            class="row">
+
+
+                            {% csrf_token %}
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_name" class="form-label">Application title</label><br>
+                                    <input class="col-lg-12" name="title" value="{{ title }}" readonly >
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_name" class="form-label">Full Name*</label>
+                                    {{form.name}}
+                                    {{form.error.name}}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_phone" class="form-label">Phone Number</label>
+                                    {{form.phone}}
+                                    {{form.error.phone}}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_email" class="form-label">Email*</label>
+                                    {{form.email}}
+                                    {{form.error.email}}
+                                </div>
+                            </div>
+
+                            <!-- Photo, CV Document, Original Document -->
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_image" class="form-label">Photo (optional)</label>
+                                    {{form.image}}
+                                    {{form.error.image}}                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_cv" class="form-label">CV Document*</label>
+                                    {{form.cv_document}}
+                                    {{form.error.cv_document}}
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label for="id_concept_note" class="form-label">Original Document*</label>
+                                    {{form.original_document}}
+                                    {{form.error.original_document}}
+                                </div>
+                            </div>
+
+                            <!-- Supplementary Document, Department -->
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="id_supplementary_docs" class="form-label">Supplementary Docs
+                                    </label>
+                                    {{form.supplementary_document}}
+                                    {{form.error.supplementary_document}}
+                                </div>
+                            </div>
+                            <!-- Application Letter -->
+                            <div class="col-md-12 mb-3">
+                                <label for="id_desc" class="form-label">Something about Your Application
+                                    (optional)</label>
+                                    {{form.letter}}
+                                    {{form.error.letter}}
+                            </div>
+
+                            <!-- Form Submit Button -->
+                            <div class="col-md-12 mb-3">
+                                <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to submit?')">Submit</button>
+                            </div>
+                            
+                        </form>
+
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <strong>Error!</strong> Please correct the following issues:
+                            <ul>
+                                {% for field, error_list in form.errors.items %}
+                                {% for error in error_list %}
+                                <li>{{ field }}: {{ error }}</li>
+                                {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

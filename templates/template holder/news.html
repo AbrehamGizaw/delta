@@ -1,0 +1,187 @@
+{% extends 'front/base.html' %}
+
+{% load static %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block news-main %} active {% endblock %}
+{% block news %} active {% endblock %}
+
+{% block page-name %}<span>News </span> {% endblock %}
+
+{% block content %}
+
+<!--site-main start-->
+<div class="site-main single">
+
+    <!-- sidebar -->
+    <div class="sidebar ttm-sidebar-right ttm-bgcolor-white break-991-colum clearfix">
+        <div class="container">
+
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 pt-25 mt-25">
+                    <!-- section-title -->
+                    <div class="section-title with-desc clearfix">
+                        <div class="title-header text-center">
+                            <h5> OUR ARTICLES AND NEWS</h5>
+                        </div>
+                    </div><!-- section-title end -->
+                </div>
+            </div><!-- row end -->
+
+            <!-- row -->
+            <div class="row">
+                <div class="col-lg-9 ">
+                    <div class="post-slide owl-carousel owl-theme owl-loaded mt-5" data-item="2" data-nav="false"
+                        data-dots="false" data-auto="false">
+                        <!-- featured-imagebox-post -->
+                        {% for news_item in news %}
+                        <!-- '', 'image', 'description', 'essay', 'post_date' -->
+                        <div class="featured-imagebox featured-imagebox-post ttm-box-view-top-image">
+                            <div class="ttm-post-featured-outer">
+                                <div class="ttm-post-format-icon">
+                                    <i class="ti ti-pencil"></i>
+                                </div>
+                                <div class="ttm-post-thumbnail featured-thumbnail">
+                                    <img class="img-fluid" src="{{news_item.image.url}}" alt="" style="height: 250px;">
+                                </div>
+                                <div class="ttm-box-post-date">
+                                    <span class="ttm-entry-date">
+                                        <time class="entry-date" datetime="2019-01-16T07:07:55+00:00">12<span
+                                                class="entry-month">Jan<span
+                                                    class="entry-year">2022</span></span></time>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="featured-content featured-content-post box-shadow">
+                                <div class="post-title featured-title">
+                                    <h5><a href="single-blog.html">{{news_item.title}}</a></h5>
+                                </div>
+                                <div class="post-desc featured-desc">
+                                    <p>{{news_item.description}}</p>
+                                    <a class="ttm-btn ttm-btn-size-sm ttm-icon-btn-right ttm-btn-color-skincolor btn-inline mb-15"
+                                        href="#">READ MORE<i class="ti ti-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div><!-- featured-imagebox-post end -->
+                        {% endfor %}
+                    </div>
+                </div>
+                <div
+                    class="col-lg-3 widget-area sidebar-right ttm-col-bgcolor-yes ttm-bg ttm-right-span ttm-bgcolor-grey">
+                    <div class="ttm-col-wrapper-bg-layer ttm-bg-layer"></div>
+                    <aside class="widget widget-search">
+                        <form role="search" method="get" class="search-form  box-shadow" action="#">
+                            <label>
+                                <span class="screen-reader-text">Search for:</span>
+                                <input type="search" class="input-text" placeholder="Search …" value="" name="s">
+                            </label>
+                            <input type="submit" class="search-submit" value="Search">
+                        </form>
+                    </aside>
+                    <aside class="widget widget-categories">
+                        <h3 class="widget-title">Categories</h3>
+                        <ul>
+                            <li><a href="#">Ayurveda</a><span>2</span></li>
+                            <li><a href="#">Cardiac</a><span>4</span></li>
+                            <li><a href="#">Health care</a><span>2</span></li>
+                            <li><a href="#">LifeStyle</a><span>2</span></li>
+                            <li><a href="#">Medical</a><span>5</span></li>
+                            <li><a href="#">Quote</a><span>1</span></li>
+                        </ul>
+                    </aside>
+                </div>
+
+                <div class="col-lg-12 ">
+                    <div class="ttm-pagination">
+                        <a class="next page-numbers" href="#"><i class="ti ti-arrow-left"></i></a>
+                        <span class="page-numbers current">1</span>
+                        <a class="page-numbers" href="#">2</a>
+                        <a class="next page-numbers" href="#"><i class="ti ti-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div><!-- row end -->
+
+
+            <div class="widget widget-recent-post">
+                <h3 class="widget-title">Related News</h3>
+
+                <div class="row multi-columns-row ttm-boxes-row-wrapper">
+                    <div class="ttm-box-col-wrapper col-lg-4 col-md-6 col-sm-12">
+                        <!-- featured-imagebox-post -->
+                        <div class="featured-imagebox featured-imagebox-post ttm-box-view-left-image box-shadow row">
+                            <div class="col-lg-4 col-md-12 ttm-featured-img-left">
+                                <div class="ttm-post-featured-outer">
+                                    <div class="ttm-post-thumbnail featured-thumbnail">
+                                        <img class="img-fluid" src="{% static 'front/images/portfolio/post-one-768x800.jpg' %}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-12 featured-content featured-content-post">
+                                <div class="post-meta">
+                                    <span class="ttm-meta-line comments-link">April 23, 2032</span>
+                                </div>
+                                <div class="post-title featured-title">
+                                    <h5><a href="single-blog.html">How much aspirin to take for stroke</a></h5>
+                                </div>
+                            </div>
+                        </div><!-- featured-imagebox-post end-->
+                    </div>
+                    <div class="ttm-box-col-wrapper col-lg-4 col-md-6 col-sm-12">
+                        <!-- featured-imagebox-post -->
+                        <div class="featured-imagebox featured-imagebox-post ttm-box-view-left-image box-shadow row">
+                            <div class="col-lg-4 col-md-12 ttm-featured-img-left">
+                                <div class="ttm-post-featured-outer">
+                                    <div class="ttm-post-thumbnail featured-thumbnail">
+                                        <img class="img-fluid" src="{% static 'front/images/portfolio/post-two-768x800.jpg' %}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-12 featured-content featured-content-post">
+                                <div class="post-meta">
+                                    <span class="ttm-meta-line comments-link">April 23, 2032</span>
+                                </div>
+                                <div class="post-title featured-title">
+                                    <h5><a href="single-blog.html">How much aspirin to take for stroke</a></h5>
+                                </div>
+                            </div>
+                        </div><!-- featured-imagebox-post end -->
+                    </div>
+                    <div class="ttm-box-col-wrapper col-lg-4 col-md-6 col-sm-12">
+                        <!-- featured-imagebox-post -->
+                        <div class="featured-imagebox featured-imagebox-post ttm-box-view-left-image box-shadow row">
+                            <div class="col-lg-4 col-md-12 ttm-featured-img-left">
+                                <div class="ttm-post-featured-outer">
+                                    <div class="ttm-post-thumbnail featured-thumbnail">
+                                        <img class="img-fluid" src="{% static 'front/images/portfolio/post-three-768x800.jpg' %}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-12 featured-content featured-content-post">
+                                <div class="post-meta">
+                                    <span class="ttm-meta-line comments-link">April 23, 2032</span>
+                                </div>
+                                <div class="post-title featured-title">
+                                    <h5><a href="single-blog.html">How much aspirin to take for stroke</a></h5>
+                                </div>
+                            </div>
+                        </div><!-- featured-imagebox-post end-->
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <!-- sidebar end -->
+
+
+</div><!--site-main end-->
+
+
+{% endblock %}

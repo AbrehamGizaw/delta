@@ -1,0 +1,135 @@
+
+
+{% extends 'front/base.html' %}
+
+{% load static %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block pub %} active {% endblock %}
+{% block call %}active{% endblock %}
+{% block page-name %}<span> Call Of application </span> {% endblock %}
+
+
+{% block content %}
+
+ 
+    <!--site-main start-->
+    <div class="site-main ">
+
+        <section class=" overview-section clearfix">
+            <div class="ttm-team-member-single-content-wrapper ttm-team-member-view-default">
+                <div class="container">
+
+                    
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 mt-25 pt-25">
+                            <!-- section-title -->
+                            <div class="section-title with-desc clearfix">
+                                <div class="title-header text-center">
+                                    <h5 > Call Of Application</h5>
+                                </div>
+                            </div><!-- section-title end -->
+                        </div>
+                    </div><!-- row end -->
+
+                    <!-- row -->
+                    <div class="row" style="margin-top: -20px;">
+                      {% for callapplication in callapplication %} 
+                        <div class="col-lg-12">
+
+                            <div class="ttm-team-member-single-content">
+                                <div class="row">
+                                   
+                                    <div class="ttm-team-member-single-content-area col-md-12 col-lg-12">
+                                        <div class="ttm-team-member-content shadow-box ">
+                                            <div class="ttm-team-member-single-list">
+
+                                                <div class="row">
+                                                    <div class="col-lg-1">
+                                                        <div class="ttm-icon ttm-icon_element-fill ttm-icon_element-color-white ttm-icon_element-background-dark ttm-icon_element-size-xs ttm-icon_element-style-rounded">
+                                                            <i class="">{{forloop.counter}}</i>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-lg-11">
+                                                        <h2 class="ttm-team-member-single-title"> {{callapplication.title}}</h2>
+                                                        <h5 class="ttm-team-member-single-position"> <strong> <i class="fa fa-calendar"></i> Apply Before: </strong>{{ callapplication.end_date | date:"M. d, Y" }}</h5>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="row ttm-team-data">
+                                                    <div class="col-lg-8">
+                                                        <div class="">
+                                                            <div class="ttm-team-details-wrapper">
+                                                                <ul class="ttm-team-details-list clearfix">
+                                                                    <li>
+                                                                        <div class="ttm-team-list-title">
+                                                                            <i class="fa fa-phone"></i> Contact Phone:
+                                                                        </div>
+                                                                        <div class="ttm-team-list-value"><a href="tel:(123)456-7890"> {{callapplication.phone}}</a></div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="ttm-team-list-title">
+                                                                            <i class="ti ti-email"></i> Email:
+                                                                        </div>
+                                                                        <div class="ttm-team-list-value">
+                                                                            <a href="mailto:info@example.com" tabindex="0"> {{callapplication.email}}</a>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                       <div class="ttm-team-list-title">
+                                                                           <i class="ti ti-location-pin"></i> Address:
+                                                                       </div>
+                                                                       <div class="ttm-team-list-value">Addis Ababa, Black lion Hospital</div>
+                                                                   </li>
+                                                                    
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                
+                                                        <div class="col-lg-4">
+                                                            <div class="pb-1">
+                                                                <a href="{% url 'add_application' title=callapplication.title %}" class="ttm-btn ttm-btn-size-xs ttm-btn-shape-square ttm-btn-style-border ttm-btn-color-black" href="#">Apply <span class="pr-2"> </span> </a>
+                                                            </div>
+                                                            <div class="pb-1">
+                                                                <a href="{{callapplication.document.url}}" class="ttm-btn ttm-btn-size-xs ttm-btn-shape-square ttm-btn-style-border ttm-btn-color-black">Download <span class="pr-2"> </span> </a>
+                                                            </div>
+                                                            <div class="pb-1">
+                                                                <a href="" class="ttm-btn ttm-btn-size-xs ttm-btn-shape-square ttm-btn-style-border ttm-btn-color-black">Learn More <span class="pr-2"> </span> </a>
+                                                            </div>
+                                                        </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                     
+                        </div>
+                        {% endfor %}
+
+                        <div class="col-lg-12 ">
+                            <div class="ttm-pagination">
+                                <a class="next page-numbers" href="#"><i class="ti ti-arrow-left"></i></a>
+                                <span class="page-numbers current">1</span>
+                                <a class="page-numbers" href="#">2</a>
+                                <a class="next page-numbers" href="#"><i class="ti ti-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                    </div> <!--end row -->
+                </div>
+            </div>
+        </section>
+
+
+    </div><!--site-main end-->
+
+
+{% endblock %}
